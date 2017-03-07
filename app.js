@@ -4,7 +4,12 @@ function getPokemon(url){
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      pokemon.push(...data.results);
+      data.results.map(datum=>{
+        if (!datum.name.match(/-mega|pikachu-/,'gi')) {
+          pokemon.push(datum);
+        }
+      })
+      // pokemon.push(...data.results);
       buildPokemonList();
     });
 }
