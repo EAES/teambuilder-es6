@@ -51,9 +51,9 @@ document.body.appendChild(pokemonListElement);
 
 const pokemonList = 
   `<form>
-    <input type="text" class="search-pokemon">
+    <input type="text" class="search-pokemon" placeholder="Filter by name...">
     <ul class="suggestions">
-      <li>fetching list...</li>
+      <p>fetching list...</p>
     </ul>
   </form>`;
 
