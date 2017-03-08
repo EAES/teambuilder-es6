@@ -1,20 +1,31 @@
+let mon;
 let pokemon = [];
 
-function getPokemon(url){
+function getInitialPokemon(url){
   fetch(url)
-    .then(res => res.json())
+    .then(results => results.json())
     .then(data => {
-      data.results.map(datum=>{
-        if (!datum.name.match(/-mega|pikachu-/,'gi')) {
-          pokemon.push(datum);
-        }
-      })
-      // pokemon.push(...data.results);
-      buildPokemonList();
-    });
+      displayPokemonStats(data);
+    })
 }
 
-function findPokemonMatch(matchWord, cities){
+function displayPokemonStats(pokemon){
+  const html = `
+    <img src="${pokemon.sprites.front_default}" />
+    Natl Dex No. ${pokemon.id}
+    ${pokemon.name}
+    ${pokemon.types.map(type => `${type.type.name}`)}
+    ${pokemon.stats.map(stat => `${stat.stat.name}`)}
+    ${pokemon.stats.map(stat => `${stat.base_stat}`)}
+  `;
+
+  const pokemonQuickView = document.createElement('pokemon-quickview');
+  document.body.insertBefore(pokemonQuickView, pokemonListElement);
+
+  pokemonQuickView.innerHTML = html;
+}
+
+function findPokemonMatch(matchWord, pokemon){
   return pokemon.filter(mon=>{
     const regex = new RegExp(matchWord, 'gi');
     return mon.name.match(regex);
@@ -43,7 +54,7 @@ function buildPokemonList(){
   suggestions.innerHTML = html;
 }
 
-getPokemon('http://pokeapi.co/api/v2/pokemon/?limit=900');
+getInitialPokemon('http://pokeapi.co/api/v2/pokemon/1/');
 
 //create custom element
 const pokemonListElement = document.createElement('pokemon-list');
