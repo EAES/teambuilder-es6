@@ -4,12 +4,17 @@ let pokemon = [];
 function getInitialPokemon(url){
   fetch(url)
     .then(results => results.json())
-    .then(data => {
-      displayPokemonStats(data);
-    })
+    .then(data => renderPokeStats(data));
+    //to do: catch error
 }
 
-function displayPokemonStats(pokemon){
+function getPokemonList(url){
+  fetch(url)
+    .then(results => results.json())
+    .then(data => buildPokemonList(data));
+}
+
+function renderPokeStats(pokemon){
   const html = `
     <img src="${pokemon.sprites.front_default}" />
     Natl Dex No. ${pokemon.id}
@@ -37,7 +42,6 @@ function displayPokemonMatches(){
   const html = matchArray.map(mon=>{
     return `<li>${mon.name}</li>`;
   }).join('');
-  // console.log(html);
   if (html !== '') {
     suggestions.innerHTML = html;
   } else {
@@ -45,16 +49,24 @@ function displayPokemonMatches(){
   }
 }
 
-function buildPokemonList(){
-  //console.log("building list...")
+function buildPokemonList(data){
+  data.results.map(result => pokemon.push(result));
+
   const html = pokemon.map(mon=>{
-    return `<li>${mon.name}</li>`;
+    return `
+      <li>${mon.name}</li>
+    `;
   }).join('');
 
   suggestions.innerHTML = html;
 }
 
-getInitialPokemon('http://pokeapi.co/api/v2/pokemon/1/');
+const apiUrl = 'http://pokeapi.co/api/v2/pokemon/'
+const apiLimit = 20
+const apiOffset = 0;
+
+getPokemonList(apiUrl+'?'+'offset='+apiOffset+'&limit='+apiLimit);
+getInitialPokemon(apiUrl+'1/');
 
 //create custom element
 const pokemonListElement = document.createElement('pokemon-list');
