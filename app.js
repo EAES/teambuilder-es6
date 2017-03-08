@@ -1,6 +1,10 @@
 let mon;
 let pokemon = [];
+const apiUrl = 'http://pokeapi.co/api/v2/pokemon/';
+const apiLimit = 900;
+const apiOffset = 0;
 
+//functions
 function getInitialPokemon(url){
   fetch(url)
     .then(results => results.json())
@@ -23,9 +27,6 @@ function renderPokeStats(pokemon){
     ${pokemon.stats.map(stat => `${stat.stat.name}`)}
     ${pokemon.stats.map(stat => `${stat.base_stat}`)}
   `;
-
-  const pokemonQuickView = document.createElement('pokemon-quickview');
-  document.body.insertBefore(pokemonQuickView, pokemonListElement);
 
   pokemonQuickView.innerHTML = html;
 }
@@ -55,37 +56,32 @@ function buildPokemonList(data){
   });
 
   const html = pokemon.map(mon=>{
-    return `
-      <li>${mon.name}</li>
-    `;
+    return `<li>${mon.name}</li>`;
   }).join('');
 
   suggestions.innerHTML = html;
 }
 
-const apiUrl = 'http://pokeapi.co/api/v2/pokemon/'
-const apiLimit = 900
-const apiOffset = 0;
+//build DOM
+const pokemonQuickView = document.createElement('pokemon-quickview');
+const pokemonListNode = document.createElement('pokemon-list');
+document.body.appendChild(pokemonListNode);
+document.body.insertBefore(pokemonQuickView, pokemonListNode);
 
-getPokemonList(apiUrl+'?'+'offset='+apiOffset+'&limit='+apiLimit);
-getInitialPokemon(apiUrl+'1/');
-
-//create custom element
-const pokemonListElement = document.createElement('pokemon-list');
-document.body.appendChild(pokemonListElement);
-
-const pokemonList = 
-  `<form>
-    <input type="text" class="search-pokemon" placeholder="Filter by name...">
+const pokemonListInput = 
+  `<input type="text" class="search-pokemon" placeholder="Filter by name...">
     <ul class="suggestions">
       <p>fetching list...</p>
-    </ul>
-  </form>`;
+    </ul>`;
 
-pokemonListElement.innerHTML = pokemonList;
+pokemonListNode.innerHTML = pokemonListInput;
 
-const searchInput = document.querySelector('.search-pokemon');
 const suggestions = document.querySelector('.suggestions');
 
-// searchInput.addEventListener('change', findPokemonMatch)
+//event listeners
+const searchInput = document.querySelector('.search-pokemon');
 searchInput.addEventListener('keyup', displayPokemonMatches)
+
+//go
+getPokemonList(apiUrl+'?'+'offset='+apiOffset+'&limit='+apiLimit);
+getInitialPokemon(apiUrl+'1/');
