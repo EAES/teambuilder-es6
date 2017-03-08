@@ -50,7 +50,9 @@ function displayPokemonMatches(){
 }
 
 function buildPokemonList(data){
-  data.results.map(result => pokemon.push(result));
+  data.results.map(result => {
+    !result.name.match(/-mega|chu-/)  ?  pokemon.push(result) : undefined
+  });
 
   const html = pokemon.map(mon=>{
     return `
@@ -62,7 +64,7 @@ function buildPokemonList(data){
 }
 
 const apiUrl = 'http://pokeapi.co/api/v2/pokemon/'
-const apiLimit = 20
+const apiLimit = 900
 const apiOffset = 0;
 
 getPokemonList(apiUrl+'?'+'offset='+apiOffset+'&limit='+apiLimit);
