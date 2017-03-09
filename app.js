@@ -1,6 +1,7 @@
 let mon;
 let pokemon = [];
 const apiUrl = 'http://pokeapi.co/api/v2/pokemon/';
+const imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 const apiLimit = 900;
 const apiOffset = 0;
 
@@ -41,25 +42,58 @@ function findPokemonMatch(matchWord, pokemon){
 function displayPokemonMatches(){
   const matchArray = findPokemonMatch(this.value, pokemon);
   const html = matchArray.map(mon=>{
-    return `<li>${mon.name}</li>`;
+    return `<tr>
+    <td>${mon.id}</td>
+    <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : '' }</td>
+    <td>${mon.name}</td>
+    <td>${mon.type_i}</td>
+    <td>${mon.type_ii}</td>
+    </tr>`
   }).join('');
   if (html !== '') {
-    suggestions.innerHTML = html;
+    suggestions.innerHTML = `
+      <table>
+      <th>
+      <td>ID</td>
+      <td>Sprite</td>
+      <td>Name</td>
+      <td>Type I</td>
+      <td>Type II</td>
+      </th>`
+      + html +
+      `</table>`;
   } else {
     suggestions.innerHTML = `<li>No results found</li>`;
   }
 }
 
 function buildPokemonList(data){
-  data.results.map(result => {
-    !result.name.match(/-mega|chu-/)  ?  pokemon.push(result) : undefined
+  data.map(result => {
+    !result.name.match(/-mega|chu-/)  ?  pokemon.push(result) : ''
   });
 
   const html = pokemon.map(mon=>{
-    return `<li>${mon.name}</li>`;
+    //DRY up!
+    return `<tr>
+    <td>${mon.id}</td>
+    <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : '' }</td>
+    <td>${mon.name}</td>
+    <td>${mon.type_i}</td>
+    <td>${mon.type_ii}</td>
+    </tr>`
   }).join('');
 
-  suggestions.innerHTML = html;
+  suggestions.innerHTML = `
+    <table>
+    <th>
+    <td>ID</td>
+    <td>Sprite</td>
+    <td>Name</td>
+    <td>Type I</td>
+    <td>Type II</td>
+    </th>`
+    + html +
+    `</table>`;
 }
 
 //build DOM
@@ -83,5 +117,5 @@ const searchInput = document.querySelector('.search-pokemon');
 searchInput.addEventListener('keyup', displayPokemonMatches)
 
 //go
-getPokemonList(apiUrl+'?'+'offset='+apiOffset+'&limit='+apiLimit);
+getPokemonList('pokedex.json');
 getInitialPokemon(apiUrl+'1/');
