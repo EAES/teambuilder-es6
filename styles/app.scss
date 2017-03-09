@@ -2,41 +2,48 @@ pokemon-list, pokemon-quickview{
   display: block;
 }
 
-pokemon-list input{
-  width: 100%;
-  margin: 1em 0;
-  height: 25px;
-  padding: 10px;
+#pokemonListWrapper{
+  height: 70vh;
+  overflow: scroll;
 }
 
-table{
-  border-collapse: collapse;
-  width: 100%;
-}
+pokemon-list{
+  input{
+    width: 100%;
+    margin: 1em 0;
+    height: 25px;
+    padding: 10px;
+  }
 
-table th{
-  text-align: left;
-  font-size: 14px;
-}
+  table{
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-table th:nth-child(1){
-  text-align: center;
-}
+  table th{
+    text-align: left;
+    font-size: 14px;
+  }
 
-table tr{
-  border-bottom: 1px solid #eee;
-}
+  table th:nth-child(1){
+    text-align: center;
+  }
 
-table td:nth-child(1){
-  text-align: center;
-  background: #FBFBFB;
-}
+  table tr{
+    border-bottom: 1px solid #eee;
+  }
 
-table tr:not(:first-child):hover{
-  background: #fbfbfb;
-  cursor: pointer;
-}
+  table td:nth-child(1){
+    text-align: center;
+    background: #FBFBFB;
+  }
 
-table tr:not(:first-child):active{
-  color: #D1D1D1;
+  table tr:not(:first-child):hover{
+    background: #fbfbfb;
+    cursor: pointer;
+  }
+
+  table tr:not(:first-child):active{
+    color: #D1D1D1;
+  }
 }

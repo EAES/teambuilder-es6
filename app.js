@@ -6,7 +6,9 @@ const apiLimit = 900;
 const apiOffset = 0;
 
 //functions
-function getInitialPokemon(url){
+function renderQuickViewPokemon(url){
+  pokemonQuickView.innerHTML = 'farfetching data...';
+
   fetch(url)
     .then(results => results.json())
     .then(data => renderPokeStats(data));
@@ -20,6 +22,7 @@ function getPokemonList(url){
 }
 
 function renderPokeStats(pokemon){
+  
   const html = `
     <img src="${pokemon.sprites.front_default}" />
     Natl Dex No. ${pokemon.id}
@@ -39,9 +42,8 @@ function findPokemonMatch(matchWord, pokemon){
   });
 }
 
-function displayPokemonMatches(){
-  const matchArray = findPokemonMatch(this.value, pokemon);
-  const html = matchArray.map(mon=>{
+function renderPokemonTable(pokemon){
+  const html = pokemon.map(mon=>{
     return `<tr>
     <td>${mon.id}</td>
     <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : `<img height="60" src="images/noimage.png">` }</td>
@@ -52,6 +54,7 @@ function displayPokemonMatches(){
   }).join('');
   if (html !== '') {
     suggestions.innerHTML = `
+      <div id="pokemonListWrapper">
       <table>
       <th>ID</th>
       <th>Sprite</th>
@@ -60,10 +63,28 @@ function displayPokemonMatches(){
       <th>Type II</th>
       </th>`
       + html +
-      `</table>`;
+      `</table></div>`;
+
+      //attach event listeners at build
+      const table = document.querySelector("table");
+      const tableRows = table.querySelectorAll("tr");
+      
+      tableRows.forEach(function(row){
+        function prepareQuickView(){
+          const name = this.querySelector("td:nth-child(3)");
+          renderQuickViewPokemon(apiUrl+name.innerText.toLowerCase()+'/');
+        }
+        row.addEventListener('click', prepareQuickView);
+      })
+
   } else {
     suggestions.innerHTML = `<p>No results found</p>`;
   }
+}
+
+function displayPokemonMatches(){
+  const matchArray = findPokemonMatch(this.value, pokemon);
+  renderPokemonTable(matchArray);
 }
 
 function buildPokemonList(data){
@@ -71,27 +92,7 @@ function buildPokemonList(data){
     !result.name.match(/-mega|chu-/)  ?  pokemon.push(result) : ''
   });
 
-  const html = pokemon.map(mon=>{
-    //DRY up!
-    return `<tr>
-    <td>${mon.id}</td>
-    <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : `<img height="60" src="images/noimage.png">` }</td>
-    <td>${mon.name}</td>
-    <td>${mon.type_i}</td>
-    <td>${mon.type_ii}</td>
-    </tr>`
-  }).join('');
-
-  suggestions.innerHTML = `
-    <table>
-    <th>ID</th>
-    <th>Sprite</th>
-    <th>Name</th>
-    <th>Type I</th>
-    <th>Type II</th>
-    </th>`
-    + html +
-    `</table>`;
+  renderPokemonTable(pokemon);
 }
 
 //build DOM
@@ -112,8 +113,8 @@ const suggestions = document.querySelector('.suggestions');
 
 //event listeners
 const searchInput = document.querySelector('.search-pokemon');
-searchInput.addEventListener('keyup', displayPokemonMatches)
+searchInput.addEventListener('keyup', displayPokemonMatches);
 
 //go
 getPokemonList('pokedex.json');
-getInitialPokemon(apiUrl+'1/');
+renderQuickViewPokemon(apiUrl+'1/');
