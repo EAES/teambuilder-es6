@@ -53,17 +53,16 @@ function displayPokemonMatches(){
   if (html !== '') {
     suggestions.innerHTML = `
       <table>
-      <th>
-      <td>ID</td>
-      <td>Sprite</td>
-      <td>Name</td>
-      <td>Type I</td>
-      <td>Type II</td>
+      <th>ID</th>
+      <th>Sprite</th>
+      <th>Name</th>
+      <th>Type I</th>
+      <th>Type II</th>
       </th>`
       + html +
       `</table>`;
   } else {
-    suggestions.innerHTML = `<li>No results found</li>`;
+    suggestions.innerHTML = `<p>No results found</p>`;
   }
 }
 
@@ -85,12 +84,11 @@ function buildPokemonList(data){
 
   suggestions.innerHTML = `
     <table>
-    <th>
-    <td>ID</td>
-    <td>Sprite</td>
-    <td>Name</td>
-    <td>Type I</td>
-    <td>Type II</td>
+    <th>ID</th>
+    <th>Sprite</th>
+    <th>Name</th>
+    <th>Type I</th>
+    <th>Type II</th>
     </th>`
     + html +
     `</table>`;
@@ -104,9 +102,9 @@ document.body.insertBefore(pokemonQuickView, pokemonListNode);
 
 const pokemonListInput = 
   `<input type="text" class="search-pokemon" placeholder="Filter by name...">
-    <ul class="suggestions">
+    <div class="suggestions">
       <p>fetching list...</p>
-    </ul>`;
+    </div>`;
 
 pokemonListNode.innerHTML = pokemonListInput;
 

@@ -1,0 +1,33 @@
+pokemon-list, pokemon-quickview{
+  display: block;
+}
+
+pokemon-list input{
+  width: 100%;
+  margin: 1em 0;
+  height: 25px;
+  padding: 10px;
+}
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th{
+  text-align: left;
+  font-size: 14px;
+}
+
+table th:nth-child(1){
+  text-align: center;
+}
+
+table tr{
+  border-bottom: 1px solid #eee;
+}
+
+table td:nth-child(1){
+  text-align: center;
+  background: #FBFBFB;
+}
