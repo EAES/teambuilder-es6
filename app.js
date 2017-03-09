@@ -44,7 +44,7 @@ function displayPokemonMatches(){
   const html = matchArray.map(mon=>{
     return `<tr>
     <td>${mon.id}</td>
-    <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : '' }</td>
+    <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : `<img height="60" src="images/noimage.png">` }</td>
     <td>${mon.name}</td>
     <td>${mon.type_i}</td>
     <td>${mon.type_ii}</td>
@@ -76,7 +76,7 @@ function buildPokemonList(data){
     //DRY up!
     return `<tr>
     <td>${mon.id}</td>
-    <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : '' }</td>
+    <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : `<img height="60" src="images/noimage.png">` }</td>
     <td>${mon.name}</td>
     <td>${mon.type_i}</td>
     <td>${mon.type_ii}</td>
