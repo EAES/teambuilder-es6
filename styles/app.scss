@@ -31,3 +31,12 @@ table td:nth-child(1){
   text-align: center;
   background: #FBFBFB;
 }
+
+table tr:not(:first-child):hover{
+  background: #fbfbfb;
+  cursor: pointer;
+}
+
+table tr:not(:first-child):active{
+  color: #D1D1D1;
+}
