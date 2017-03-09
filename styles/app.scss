@@ -2,6 +2,10 @@ pokemon-list, pokemon-quickview{
   display: block;
 }
 
+pokemon-quickview{
+  min-height: 125px;
+}
+
 #pokemonListWrapper{
   height: 70vh;
   overflow: scroll;

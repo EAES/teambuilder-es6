@@ -1,7 +1,6 @@
 let mon;
 let pokemon = [];
 const apiUrl = 'http://pokeapi.co/api/v2/pokemon/';
-const imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 const apiLimit = 900;
 const apiOffset = 0;
 
@@ -22,7 +21,7 @@ function getPokemonList(url){
 }
 
 function renderPokeStats(pokemon){
-  
+
   const html = `
     <img src="${pokemon.sprites.front_default}" />
     Natl Dex No. ${pokemon.id}
@@ -43,6 +42,8 @@ function findPokemonMatch(matchWord, pokemon){
 }
 
 function renderPokemonTable(pokemon){
+  const imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+  
   const html = pokemon.map(mon=>{
     return `<tr>
     <td>${mon.id}</td>
