@@ -16,14 +16,54 @@ body{
 }
 
 .pokemon-quickview{
-  min-height: 125px;
+  height: 260px;
   padding: 1em;
   box-sizing: border-box;
+  position: relative;
+
+  .loader{
+    width: 50px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  h1{
+    text-align: center;
+    text-transform: capitalize;
+  }
 }
 
 #pokemonListWrapper{
-  max-height: 70vh;
+  max-height: 50vh;
   overflow: scroll;
+}
+
+#pokemonInfo{
+  display: inline-block;
+  width: 49%;
+  text-align:center;
+
+  img{
+    width: 50%;
+  }
+
+  ul{
+    text-align: left;
+
+    li{
+        list-style-type: none;
+        display: inline-block;
+        margin-right: 10px;
+      }
+  } 
+}
+
+#pokemonStatsInfo{
+  display: inline-block;
+  width: 49%;
 }
 
 .pokemon-list{
@@ -38,7 +78,7 @@ body{
 
   table{
     border-collapse: collapse;
-    width: 96%;
+    width: 100%;
     margin: 0 auto;
   }
 

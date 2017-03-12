@@ -6,7 +6,7 @@ const apiOffset = 0;
 
 //functions
 function renderQuickViewPokemon(url){
-  pokemonQuickView.innerHTML = 'farfetching data...';
+  pokemonQuickView.innerHTML = '<img class="loader" src="images/loader.gif">';
 
   fetch(url)
     .then(results => results.json())
@@ -24,14 +24,13 @@ function renderPokeStats(pokemon){
 
   const html = `
     <h1>${pokemon.name}</h1>
-    <div id="pokemonImage">
-      <img src="${pokemon.sprites.front_default}" />
-    </div>
-    <div id="pokemonQuickInfo">
-      <p>Natl Dex No. ${pokemon.id}</p>
+    <div id="pokemonInfo">
+      <img src="images/pokemon/${pokemon.id}.png" />
       <ul>
-        ${pokemon.types.map(type => `<li>${type.type.name}</li>`).join('')}
+        ${pokemon.types.map(type => `<li><span class="${type.type.name}">${type.type.name}</span></li>`).join('')}
       </ul>
+    </div>
+    <div id="pokemonStatsInfo">
       ${pokemon.stats.map(stat => `${stat.base_stat}`).join(' | ')}
     </div>
   `;
@@ -54,7 +53,7 @@ function renderPokemonTable(pokemon){
     <td>${mon.id}</td>
     <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : `<img height="60" src="images/noimage.png">` }</td>
     <td>${mon.name}</td>
-    <td>${mon.type_i}</td>
+    <td><span class="${mon.type_i}"> ${mon.type_i}</span></td>
     <td>${mon.type_ii}</td>
     </tr>`
   }).join('');
