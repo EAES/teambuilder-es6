@@ -23,12 +23,17 @@ function getPokemonList(url){
 function renderPokeStats(pokemon){
 
   const html = `
-    <img src="${pokemon.sprites.front_default}" />
-    Natl Dex No. ${pokemon.id}
-    ${pokemon.name}
-    ${pokemon.types.map(type => `${type.type.name}`)}
-    ${pokemon.stats.map(stat => `${stat.stat.name}`)}
-    ${pokemon.stats.map(stat => `${stat.base_stat}`)}
+    <h1>${pokemon.name}</h1>
+    <div id="pokemonImage">
+      <img src="${pokemon.sprites.front_default}" />
+    </div>
+    <div id="pokemonQuickInfo">
+      <p>Natl Dex No. ${pokemon.id}</p>
+      <ul>
+        ${pokemon.types.map(type => `<li>${type.type.name}</li>`).join('')}
+      </ul>
+      ${pokemon.stats.map(stat => `${stat.base_stat}`).join(' | ')}
+    </div>
   `;
 
   pokemonQuickView.innerHTML = html;
@@ -97,10 +102,16 @@ function buildPokemonList(data){
 }
 
 //build DOM
-const pokemonQuickView = document.createElement('pokemon-quickview');
-const pokemonListNode = document.createElement('pokemon-list');
-document.body.appendChild(pokemonListNode);
-document.body.insertBefore(pokemonQuickView, pokemonListNode);
+const pokemonAddModal = document.createElement('div');
+      pokemonAddModal.classList.add('pokemon-add-modal');
+const pokemonQuickView = document.createElement('div');
+      pokemonQuickView.classList.add('pokemon-quickview')
+const pokemonListNode = document.createElement('div');
+      pokemonListNode.classList.add('pokemon-list');
+
+document.body.appendChild(pokemonAddModal);
+pokemonAddModal.appendChild(pokemonListNode);
+pokemonAddModal.insertBefore(pokemonQuickView, pokemonListNode);
 
 const pokemonListInput = 
   `<input type="text" class="search-pokemon" placeholder="Filter by name...">
