@@ -108,12 +108,12 @@ function buildPokemonList(data){
 }
 
 function addToTeam(){
-  if (team.length <= 6) {
+  if (team.length <= 5) {
     team.push(currPokemon);
   } else {
     alert("too many pokemon, please clear one from your team")
   }
-  console.log(team)
+  console.log(team.length)
 }
 
 //build DOM

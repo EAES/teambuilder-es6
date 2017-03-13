@@ -24,16 +24,6 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"\/images\/clearbtn.png": {
-		"ft": 32768,
-		"iS": 5306,
-		"l": 1,
-		"oA": 0,
-		"oAP": "\/images\/clearbtn.png",
-		"oF": 0,
-		"opt": 0,
-		"q": 100
-		},
 	"\/images\/loader.gif": {
 		"ft": 4194304,
 		"iS": 912,
