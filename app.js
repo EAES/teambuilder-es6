@@ -42,6 +42,7 @@ function renderPokeStats(pokemon){
   `;
 
   currPokemon = pokemon;
+
   pokemonQuickView.innerHTML = html;
 }
 
@@ -111,9 +112,12 @@ function addToTeam(){
   if (team.length <= 5) {
     team.push(currPokemon);
   } else {
-    alert("too many pokemon, please clear one from your team")
+    alert("too many pokemon, please clear one from your team");
   }
-  console.log(team.length)
+
+  team.map(function(member, key) {
+      console.log(`${team[key].name}`);
+  })
 }
 
 //build DOM
