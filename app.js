@@ -27,7 +27,7 @@ function renderPokeStats(pokemon){
     <div id="pokemonInfo">
       <img src="images/pokemon/${pokemon.id}.png" />
       <ul>
-        ${pokemon.types.map(type => `<li><span class="${type.type.name}">${type.type.name}</span></li>`).join('')}
+        ${pokemon.types.map(type => `<li><span class="type ${type.type.name}">${type.type.name}</span></li>`).join('')}
       </ul>
     </div>
     <div id="pokemonStatsInfo">
@@ -53,8 +53,8 @@ function renderPokemonTable(pokemon){
     <td>${mon.id}</td>
     <td>${mon.id < 722 ? `<img height="60" src="${imgUrl+parseInt(mon.id)+'.png'}">` : `<img height="60" src="images/noimage.png">` }</td>
     <td>${mon.name}</td>
-    <td><span class="${mon.type_i}"> ${mon.type_i}</span></td>
-    <td>${mon.type_ii}</td>
+    <td><span class="type ${mon.type_i.toLowerCase()}">${mon.type_i}</span></td>
+    <td><span class="type ${mon.type_ii.toLowerCase()}">${mon.type_ii}</span></td>
     </tr>`
   }).join('');
   if (html !== '') {

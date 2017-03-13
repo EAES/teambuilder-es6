@@ -80,6 +80,13 @@ body{
     border-collapse: collapse;
     width: 100%;
     margin: 0 auto;
+    font-size: 14px;
+
+    .type{
+      display: block;
+      text-align: center;
+      width: 60%;
+    }
   }
 
   table th{
@@ -107,5 +114,86 @@ body{
 
   table tr:not(:first-child):active{
     color: #D1D1D1;
+  }
+}
+
+.type{
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+  text-transform: lowercase;
+
+  &.grass{
+    background: #89D24E;
+  }
+
+  &.poison{
+    background: #AB5EA3;
+  }
+
+  &.normal{
+    background: #BEBEAE;
+  }
+
+  &.ground{
+    background: #E7C755;
+  }
+
+  &.rock{
+    background: #CDBC71;
+  }
+
+  &.steel{
+    background: #C4C2DB;
+  }
+
+  &.ice{
+    background: #96F1FF;
+  }
+
+  &.flying{
+    background: #8AACF5;
+  }
+
+  &.ghost{
+    background: #615CC9;
+  }
+
+  &.psychic{
+    background: #FA65B3;
+  }
+
+  &.fairy{
+    background: #FAAFFF;
+  }
+
+  &.electric{
+    background: #FDE33C;
+  }
+
+  &.bug{
+    background: #C0D021;
+  }
+
+  &.water{
+    background: #56ACFF;
+  }
+
+  &.dark{
+    background: #533F34;
+  }
+
+  &.fire{
+    background: #FA5442;
+  }
+
+  &.fighting{
+    background: #A95648;
+  }
+
+  &.dragon{
+    background: #8975FF;
   }
 }

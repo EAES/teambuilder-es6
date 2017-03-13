@@ -58,7 +58,12 @@ body {
 .pokemon-list table {
   border-collapse: collapse;
   width: 100%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  font-size: 14px; }
+  .pokemon-list table .type {
+    display: block;
+    text-align: center;
+    width: 60%; }
 
 .pokemon-list table th {
   text-align: left;
@@ -80,3 +85,47 @@ body {
 
 .pokemon-list table tr:not(:first-child):active {
   color: #D1D1D1; }
+
+.type {
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+  text-transform: lowercase; }
+  .type.grass {
+    background: #89D24E; }
+  .type.poison {
+    background: #AB5EA3; }
+  .type.normal {
+    background: #BEBEAE; }
+  .type.ground {
+    background: #E7C755; }
+  .type.rock {
+    background: #CDBC71; }
+  .type.steel {
+    background: #C4C2DB; }
+  .type.ice {
+    background: #96F1FF; }
+  .type.flying {
+    background: #8AACF5; }
+  .type.ghost {
+    background: #615CC9; }
+  .type.psychic {
+    background: #FA65B3; }
+  .type.fairy {
+    background: #FAAFFF; }
+  .type.electric {
+    background: #FDE33C; }
+  .type.bug {
+    background: #C0D021; }
+  .type.water {
+    background: #56ACFF; }
+  .type.dark {
+    background: #533F34; }
+  .type.fire {
+    background: #FA5442; }
+  .type.fighting {
+    background: #A95648; }
+  .type.dragon {
+    background: #8975FF; }
