@@ -5,9 +5,12 @@ body {
   margin: 2em auto;
   width: 75%;
   background: white;
-  box-shadow: 0 0 15px 1px #474747; }
+  box-shadow: 0 0 15px 1px #474747;
+  border-radius: 4px;
+  padding-bottom: 2em; }
 
 .pokemon-list, .pokemon-quickview {
+  display: block;
   width: 100%; }
 
 .pokemon-quickview {
@@ -31,11 +34,19 @@ body {
   overflow: scroll; }
 
 #pokemonInfo {
-  display: inline-block;
+  float: left;
   width: 49%;
   text-align: center; }
   #pokemonInfo img {
-    width: 50%; }
+    width: 50%;
+    max-width: 100px;
+    animation: .5s ease-in-out 0s fadeIn; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
   #pokemonInfo ul {
     text-align: left; }
     #pokemonInfo ul li {
@@ -44,47 +55,52 @@ body {
       margin-right: 10px; }
 
 #pokemonStatsInfo {
-  display: inline-block;
-  width: 49%; }
+  float: left;
+  width: 49%;
+  background: #eee;
+  height: 65%; }
 
-.pokemon-list input {
-  display: block;
-  width: 98%;
-  margin: 1em auto;
-  height: 25px;
-  padding: 1.5em;
-  box-sizing: border-box; }
-
-.pokemon-list table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 0 auto;
-  font-size: 14px; }
-  .pokemon-list table .type {
-    display: block;
-    text-align: center;
-    width: 60%; }
-
-.pokemon-list table th {
-  text-align: left;
-  font-size: 14px; }
-
-.pokemon-list table th:nth-child(1) {
-  text-align: center; }
-
-.pokemon-list table tr {
-  border-bottom: 1px solid #eee; }
-
-.pokemon-list table td:nth-child(1) {
+#pokemonAdd {
   text-align: center;
-  background: #FBFBFB; }
+  border: 1px solid red;
+  float: left; }
 
-.pokemon-list table tr:not(:first-child):hover {
-  background: #fbfbfb;
-  cursor: pointer; }
-
-.pokemon-list table tr:not(:first-child):active {
-  color: #D1D1D1; }
+.pokemon-list {
+  text-align: center; }
+  .pokemon-list input {
+    display: block;
+    width: 98%;
+    margin: 1em auto;
+    height: 25px;
+    padding: 1.5em;
+    box-sizing: border-box;
+    box-shadow: inset 3px 3px 10px #D2D2D2;
+    border: 1px solid #D2D2D2; }
+  .pokemon-list table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 14px;
+    text-align: left; }
+    .pokemon-list table .type {
+      display: block;
+      text-align: center;
+      width: 60%; }
+  .pokemon-list table th {
+    text-align: left;
+    font-size: 14px; }
+  .pokemon-list table th:nth-child(1) {
+    text-align: center; }
+  .pokemon-list table tr {
+    border-bottom: 1px solid #eee; }
+  .pokemon-list table td:nth-child(1) {
+    text-align: center;
+    background: #FBFBFB; }
+  .pokemon-list table tr:not(:first-child):hover {
+    background: #fbfbfb;
+    cursor: pointer; }
+  .pokemon-list table tr:not(:first-child):active {
+    color: #D1D1D1; }
 
 .type {
   border-radius: 20px;

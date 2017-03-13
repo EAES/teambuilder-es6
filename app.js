@@ -3,15 +3,18 @@ let pokemon = [];
 const apiUrl = 'http://pokeapi.co/api/v2/pokemon/';
 const apiLimit = 900;
 const apiOffset = 0;
+const team = [];
+currPokemon = {};
 
 //functions
 function renderQuickViewPokemon(url){
   pokemonQuickView.innerHTML = '<img class="loader" src="images/loader.gif">';
 
+  //TODO: change to promises, apparently you can't cancel fetch :c
   fetch(url)
     .then(results => results.json())
     .then(data => renderPokeStats(data));
-    //to do: catch error
+    //TODO: catch error
 }
 
 function getPokemonList(url){
@@ -33,8 +36,12 @@ function renderPokeStats(pokemon){
     <div id="pokemonStatsInfo">
       ${pokemon.stats.map(stat => `${stat.base_stat}`).join(' | ')}
     </div>
+    <div id="pokemonAdd">
+      <a href="javascript:addToTeam();">Add to team</a>
+    </div>
   `;
 
+  currPokemon = pokemon;
   pokemonQuickView.innerHTML = html;
 }
 
@@ -60,15 +67,15 @@ function renderPokemonTable(pokemon){
   if (html !== '') {
     suggestions.innerHTML = `
       <div id="pokemonListWrapper">
-      <table>
-      <th>ID</th>
-      <th>Sprite</th>
-      <th>Name</th>
-      <th>Type I</th>
-      <th>Type II</th>
-      </th>`
-      + html +
-      `</table></div>`;
+        <table>
+          <th>ID</th>
+          <th>Sprite</th>
+          <th>Name</th>
+          <th>Type I</th>
+          <th>Type II</th>`
+          + html +
+        `</table>
+      </div>`;
 
       //attach event listeners at build
       const table = document.querySelector("table");
@@ -100,6 +107,15 @@ function buildPokemonList(data){
   renderPokemonTable(pokemon);
 }
 
+function addToTeam(){
+  if (team.length <= 6) {
+    team.push(currPokemon);
+  } else {
+    alert("too many pokemon, please clear one from your team")
+  }
+  console.log(team)
+}
+
 //build DOM
 const pokemonAddModal = document.createElement('div');
       pokemonAddModal.classList.add('pokemon-add-modal');
@@ -113,7 +129,7 @@ pokemonAddModal.appendChild(pokemonListNode);
 pokemonAddModal.insertBefore(pokemonQuickView, pokemonListNode);
 
 const pokemonListInput = 
-  `<input type="text" class="search-pokemon" placeholder="Filter by name...">
+  `<input type="search" placeholder="Filter by name..." class="search-pokemon" >
     <div class="suggestions">
       <p>fetching list...</p>
     </div>`;
