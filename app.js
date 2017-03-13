@@ -120,6 +120,10 @@ function addToTeam(){
   })
 }
 
+function closeModal(){
+  pokemonAddModal.classList.add('hidden');
+}
+
 //build DOM
 const pokemonAddModal = document.createElement('div');
       pokemonAddModal.classList.add('pokemon-add-modal');
@@ -127,10 +131,14 @@ const pokemonQuickView = document.createElement('div');
       pokemonQuickView.classList.add('pokemon-quickview')
 const pokemonListNode = document.createElement('div');
       pokemonListNode.classList.add('pokemon-list');
+const pokemonModalCloseBtn = document.createElement('div');
+      pokemonModalCloseBtn.classList.add('modal-close-button');
+      pokemonModalCloseBtn.innerHTML = '<img width="15" src="images/close.png">'
 
 document.body.appendChild(pokemonAddModal);
 pokemonAddModal.appendChild(pokemonListNode);
 pokemonAddModal.insertBefore(pokemonQuickView, pokemonListNode);
+pokemonAddModal.insertBefore(pokemonModalCloseBtn, pokemonQuickView);
 
 const pokemonListInput = 
   `<input type="search" placeholder="Filter by name..." class="search-pokemon" >
@@ -145,6 +153,7 @@ const suggestions = document.querySelector('.suggestions');
 //event listeners
 const searchInput = document.querySelector('.search-pokemon');
 searchInput.addEventListener('keyup', displayPokemonMatches);
+pokemonModalCloseBtn.addEventListener('click', closeModal);
 
 //go
 getPokemonList('pokedex.json');

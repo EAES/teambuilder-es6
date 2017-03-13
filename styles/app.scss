@@ -1,3 +1,11 @@
+.hidden{
+  display: none;
+}
+
+.invisible{
+  visibility: hidden;
+}
+
 body{
   background: #898989;
 }
@@ -9,6 +17,17 @@ body{
   box-shadow: 0 0 15px 1px #474747;
   border-radius: 4px;
   padding-bottom: 2em;
+  position: relative;
+
+  .modal-close-button{
+    cursor: pointer;
+    float: right;
+    box-sizing: border-box;
+    margin: 2px 2px 0 0;
+    padding: 8px 10px;
+    position: relative;
+    z-index: 999;
+  }
 }
 
 .pokemon-list, .pokemon-quickview{
