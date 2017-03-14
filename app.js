@@ -1,19 +1,19 @@
 let mon;
-let pokemon = [];
+const pokemon = [];
 const apiUrl = 'http://pokeapi.co/api/v2/pokemon/';
 const apiLimit = 900;
 const apiOffset = 0;
 const team = [];
-currPokemon = {};
+let currPokemon = {};
 
 //functions
-function renderQuickViewPokemon(url){
+function updateQuickview(url){
   pokemonQuickView.innerHTML = '<img class="loader" src="images/loader.gif">';
 
   //TODO: change to promises, apparently you can't cancel fetch :c
   fetch(url)
     .then(results => results.json())
-    .then(data => renderPokeStats(data));
+    .then(data => renderQuickview(data));
     //TODO: catch error
 }
 
@@ -23,7 +23,7 @@ function getPokemonList(url){
     .then(data => buildPokemonList(data));
 }
 
-function renderPokeStats(pokemon){
+function renderQuickview(pokemon){
 
   const html = `
     <h1>${pokemon.name}</h1>
@@ -33,9 +33,7 @@ function renderPokeStats(pokemon){
         ${pokemon.types.map(type => `<li><span class="type ${type.type.name}">${type.type.name}</span></li>`).join('')}
       </ul>
     </div>
-    <div id="pokemonStatsInfo">
-      ${pokemon.stats.map(stat => `${stat.base_stat}`).join(' | ')}
-    </div>
+    <div id="pokemonStatsInfo"></div>
     <div id="pokemonAdd">
       <a href="javascript:addToTeam();">Add to team</a>
     </div>
@@ -44,6 +42,8 @@ function renderPokeStats(pokemon){
   currPokemon = pokemon;
 
   pokemonQuickView.innerHTML = html;
+
+  renderPokemonStats(pokemon);
 }
 
 function findPokemonMatch(matchWord, pokemon){
@@ -85,7 +85,7 @@ function renderPokemonTable(pokemon){
       tableRows.forEach(function(row){
         function prepareQuickView(){
           const name = this.querySelector("td:nth-child(3)");
-          renderQuickViewPokemon(apiUrl+name.innerText.toLowerCase()+'/');
+          updateQuickview(apiUrl+name.innerText.toLowerCase()+'/');
         }
         row.addEventListener('click', prepareQuickView);
       })
@@ -114,7 +114,6 @@ function addToTeam(){
   } else {
     alert("too many pokemon, please clear one from your team");
   }
-
   team.map(function(member, key) {
       console.log(`${team[key].name}`);
   })
@@ -122,6 +121,19 @@ function addToTeam(){
 
 function closeModal(){
   pokemonAddModal.classList.add('hidden');
+}
+
+function renderPokemonStats(pokemon){
+  //find highest number in stats array to use as base for 100%
+  const pokemonStatsGraph = document.getElementById('pokemonStatsInfo');
+  const html = `
+    ${pokemon.stats.map(stat => `${stat.base_stat}`).join(' | ')}
+  `;
+
+  const baseStatValues = [];
+  currPokemon.stats.map(stat => baseStatValues.push(stat.base_stat));
+  console.log(Math.max(...baseStatValues));
+  pokemonStatsGraph.innerHTML = html;
 }
 
 //build DOM
@@ -157,4 +169,4 @@ pokemonModalCloseBtn.addEventListener('click', closeModal);
 
 //go
 getPokemonList('pokedex.json');
-renderQuickViewPokemon(apiUrl+'1/');
+updateQuickview(apiUrl+'1/');
