@@ -124,15 +124,23 @@ function closeModal(){
 }
 
 function renderPokemonStats(pokemon){
-  //find highest number in stats array to use as base for 100%
   const pokemonStatsGraph = document.getElementById('pokemonStatsInfo');
-  const html = `
-    ${pokemon.stats.map(stat => `${stat.base_stat}`).join(' | ')}
-  `;
+  let html = '';
 
+  //find highest number in stats array to use as base for 100%
   const baseStatValues = [];
   currPokemon.stats.map(stat => baseStatValues.push(stat.base_stat));
-  console.log(Math.max(...baseStatValues));
+  const baseStatMax = Math.max(...baseStatValues);
+  const statPercentages = [];
+
+  function calculatePercent(stat,baseStatMax){
+    return Math.round(stat/baseStatMax*100);
+  }
+  
+  baseStatValues.map(stat => {
+    html += `<div style="display:inline-block;vertical-align:bottom;background:salmon;margin-right:5px;position:relative;bottom:0;width:13%;height:${calculatePercent(stat, baseStatMax)}%;">${stat}</div>`;
+  });
+
   pokemonStatsGraph.innerHTML = html;
 }
 
