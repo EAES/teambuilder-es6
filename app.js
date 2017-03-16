@@ -1,3 +1,6 @@
+'use strict';
+
+{
 let mon;
 const pokemon = [];
 const apiUrl = 'http://pokeapi.co/api/v2/pokemon/';
@@ -178,3 +181,4 @@ pokemonModalCloseBtn.addEventListener('click', closeModal);
 //go
 getPokemonList('pokedex.json');
 updateQuickview(apiUrl+'1/');
+}
