@@ -137,11 +137,12 @@ function renderPokemonStats(pokemon){
   const statPercentages = [];
 
   function calculatePercent(stat,baseStatMax){
-    return Math.round(stat/baseStatMax*100);
+    const percent = stat/baseStatMax*100;
+    return Math.round(percent - (percent * .10));
   }
   
   baseStatValues.map(stat => {
-    html += `<div style="display:inline-block;vertical-align:bottom;background:salmon;margin-right:5px;position:relative;bottom:0;width:13%;height:${calculatePercent(stat, baseStatMax)}%;">${stat}</div>`;
+    html += `<div style="height:${calculatePercent(stat, baseStatMax)}%;">${stat}</div>`;
   });
 
   pokemonStatsGraph.innerHTML = html;
