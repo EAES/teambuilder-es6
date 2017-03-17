@@ -125,6 +125,14 @@ body{
     border-top-left-radius: 3px;
     text-align: center;
 
+    &:after{
+      font-size: 8px;
+      position: absolute;
+      left:1px;
+      bottom: -11px;
+      color: #898989;
+    }
+
     span{
       margin-left: 0 !important;
       position: relative;
@@ -138,26 +146,50 @@ body{
 
   div:nth-child(1){
     background-color: red;
+
+    &:after{
+      content:"HP";
+    }
   }
 
   div:nth-child(2){
     background-color: orange;
+
+    &:after{
+      content:"Atk";
+    }
   }
 
   div:nth-child(3){
     background-color: yellow;
+
+    &:after{
+      content:"Def";
+    }
   }
 
   div:nth-child(4){
     background-color: green;
+
+    &:after{
+      content:"SpA";
+    }
   }
 
   div:nth-child(5){
     background-color: blue;
+
+    &:after{
+      content:"SpD";
+    }
   }
 
   div:nth-child(6){
     background-color: indigo;
+
+    &:after{
+      content:"Spe";
+    }
   }
 }
 

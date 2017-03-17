@@ -50,7 +50,7 @@ body {
 
 #pokemonInfo {
   float: left;
-  width: 50%;
+  width: 45%;
   text-align: center; }
   #pokemonInfo img {
     max-width: 90px;
@@ -76,7 +76,7 @@ body {
 
 #pokemonStatsInfo {
   float: left;
-  width: 50%;
+  width: 54%;
   background: #eee;
   height: 55%;
   display: flex;
@@ -95,6 +95,12 @@ body {
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     text-align: center; }
+    #pokemonStatsInfo div:after {
+      font-size: 8px;
+      position: absolute;
+      left: 1px;
+      bottom: -11px;
+      color: #898989; }
     #pokemonStatsInfo div span {
       margin-left: 0 !important;
       position: relative;
@@ -103,16 +109,28 @@ body {
     margin-right: 10px; }
   #pokemonStatsInfo div:nth-child(1) {
     background-color: red; }
+    #pokemonStatsInfo div:nth-child(1):after {
+      content: "HP"; }
   #pokemonStatsInfo div:nth-child(2) {
     background-color: orange; }
+    #pokemonStatsInfo div:nth-child(2):after {
+      content: "Atk"; }
   #pokemonStatsInfo div:nth-child(3) {
     background-color: yellow; }
+    #pokemonStatsInfo div:nth-child(3):after {
+      content: "Def"; }
   #pokemonStatsInfo div:nth-child(4) {
     background-color: green; }
+    #pokemonStatsInfo div:nth-child(4):after {
+      content: "SpA"; }
   #pokemonStatsInfo div:nth-child(5) {
     background-color: blue; }
+    #pokemonStatsInfo div:nth-child(5):after {
+      content: "SpD"; }
   #pokemonStatsInfo div:nth-child(6) {
     background-color: indigo; }
+    #pokemonStatsInfo div:nth-child(6):after {
+      content: "Spe"; }
 
 #pokemonAdd {
   text-align: center;
