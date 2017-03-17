@@ -1,6 +1,6 @@
+{
 'use strict';
 
-{
 let mon;
 const pokemon = [];
 const apiUrl = 'http://pokeapi.co/api/v2/pokemon/';
