@@ -38,13 +38,17 @@ function renderQuickview(pokemon){
     </div>
     <div id="pokemonStatsInfo"></div>
     <div id="pokemonAdd">
-      <a href="javascript:addToTeam();">Add to team</a>
+      <a href="#">Add to team</a>
     </div>
   `;
 
   currPokemon = pokemon;
 
   pokemonQuickView.innerHTML = html;
+
+  //attach event listener to add button on render of qv
+  const addBtn = document.getElementById('pokemonAdd').querySelector('a');
+  addBtn.addEventListener('click', addToTeam);
 
   renderPokemonStats(pokemon);
 }
