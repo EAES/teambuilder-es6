@@ -142,7 +142,14 @@ function renderPokemonStats(pokemon){
 
   function calculatePercent(stat,baseStatMax){
     const percent = stat/baseStatMax*100;
-    return Math.round(percent - (percent * .15));
+    if (baseStatMax < 50) {
+      return Math.round(percent - (percent * .75));
+    } else if (baseStatMax > 50 && baseStatMax < 110) {
+      return Math.round(percent - (percent * .4));
+    } else if (baseStatMax >= 110) {
+      return Math.round(percent - (percent * .15));
+    }
+    
   }
   
   baseStatValues.map(stat => {
