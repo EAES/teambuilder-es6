@@ -16,20 +16,16 @@ body{
   background: white;
   box-shadow: 0 0 15px 1px #474747;
   border-radius: 4px;
-  // padding-bottom: 2em;
-  // position: relative;
+  position: relative;
 
   .modal-close-button{
     cursor: pointer;
-    // float: right;
-    // box-sizing: border-box;
     margin: 2px 2px 0 0;
-    padding: 8px 10px;
-    // position: relative;
+    padding: 5px;
     z-index: 999;
     position: absolute;
-    right: 12px;
-    top: 15px;
+    right: 0px;
+    top: 0px;
   }
 }
 
@@ -103,23 +99,23 @@ body{
 #pokemonStatsInfo{
   float: left;
   width: 54%;
-  background: #eee;
+  background: #F4F3F3;
   height: 55%;
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
   border-bottom-left-radius: 3px;  
   border-bottom-right-radius: 3px;  
-  border-bottom: 1px solid #c9cacd;
+  border: 1px solid #EDEDED;
   // box-sizing: border-box;
   div:first-of-type{
-    margin-left: 10px;
+    margin-left: 5px;
   }
 
   div{
     background:salmon;
     position:relative;
-    width:12%;
+    width:9%;
     font-size: 10px;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -136,16 +132,20 @@ body{
     span{
       margin-left: 0 !important;
       position: relative;
-      top: -10px;
+      top: -15px;
+      font-weight: bold;
+      font-size: 13px;
+      color: #6B6B6B;
     }
   }
 
   div:last-of-type{
-    margin-right: 10px;
+    margin-right: 5px;
   }
 
   div:nth-child(1){
-    background-color: red;
+    background: #D0011B;
+    border: 1px solid #95091A;
 
     &:after{
       content:"HP";
@@ -153,7 +153,8 @@ body{
   }
 
   div:nth-child(2){
-    background-color: orange;
+    background: #F6A623;
+    border: 1px solid #BA7910;
 
     &:after{
       content:"Atk";
@@ -161,7 +162,8 @@ body{
   }
 
   div:nth-child(3){
-    background-color: yellow;
+    background: #F8E81C;
+    border: 1px solid #B8AC14;
 
     &:after{
       content:"Def";
@@ -169,7 +171,8 @@ body{
   }
 
   div:nth-child(4){
-    background-color: green;
+    background: #7ED321;
+    border: 1px solid #5BA609;
 
     &:after{
       content:"SpA";
@@ -177,7 +180,8 @@ body{
   }
 
   div:nth-child(5){
-    background-color: blue;
+    background: #4990E2;
+    border: 1px solid #2368B8;
 
     &:after{
       content:"SpD";
@@ -185,7 +189,8 @@ body{
   }
 
   div:nth-child(6){
-    background-color: indigo;
+    background: #ED94FF;
+    border: 1px solid #D24BED;
 
     &:after{
       content:"Spe";

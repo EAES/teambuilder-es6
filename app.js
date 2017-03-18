@@ -147,7 +147,7 @@ function renderPokemonStats(pokemon){
     } else if (baseStatMax > 50 && baseStatMax < 110) {
       return Math.round(percent - (percent * .4));
     } else if (baseStatMax >= 110) {
-      return Math.round(percent - (percent * .15));
+      return Math.round(percent - (percent * .20));
     }
     
   }
