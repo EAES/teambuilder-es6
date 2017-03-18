@@ -66,7 +66,7 @@ function renderPokemonTable(pokemon){
   const html = pokemon.map(mon=>{
     return `<tr>
     <td>${mon.id}</td>
-    <td>${mon.id < 722 ? `<img height="40" src="${imgUrl+parseInt(mon.id)+'.png'}">` : `<img height="60" src="images/noimage.png">` }</td>
+    <td>${mon.id < 722 ? `<img height="40" src="${imgUrl+parseInt(mon.id)+'.png'}">` : `<img height="30" src="images/noimage-unown.png">` }</td>
     <td>${mon.name}</td>
     <td><span class="type ${mon.type_i.toLowerCase()}">${mon.type_i}</span></td>
     <td><span class="type ${mon.type_ii.toLowerCase()}">${mon.type_ii}</span></td>

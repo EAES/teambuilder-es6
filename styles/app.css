@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Pokemon Pixel Font Regular";
+  src: url("../fonts/pokemon_pixel_font.eot?") format("eot"), url("../fonts/pokemon_pixel_font.woff") format("woff"), url("../fonts/pokemon_pixel_font.ttf") format("truetype"), url("../fonts/pokemon_pixel_font.svg#Pokemon-Pixel-Font") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 *, *:before, *:after {
   box-sizing: border-box; }
 
@@ -14,9 +20,9 @@ body {
   margin: 1em auto;
   width: 90%;
   min-width: 300px;
+  max-width: 350px;
   background: white;
   box-shadow: 0 0 15px 1px #474747;
-  border-radius: 4px;
   position: relative; }
   .pokemon-add-modal .modal-close-button {
     cursor: pointer;
@@ -24,8 +30,8 @@ body {
     padding: 5px;
     z-index: 999;
     position: absolute;
-    right: 0px;
-    top: 0px; }
+    right: 2px;
+    top: 1px; }
 
 .pokemon-list, .pokemon-quickview {
   display: block;
@@ -46,8 +52,12 @@ body {
   .pokemon-quickview h1 {
     text-align: center;
     text-transform: capitalize;
-    margin-top: 0;
-    font-size: 1.5rem; }
+    margin: -5px 0 10px 0;
+    color: #6B6B6B;
+    font-size: 38px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-family: "Pokemon Pixel Font Regular"; }
 
 #pokemonListWrapper {
   max-height: 41vh;
@@ -61,7 +71,7 @@ body {
     width: 100%;
     max-width: 90px;
     animation: .5s ease-in-out 0s fadeIn;
-    margin: -5px auto -0px auto;
+    margin: 0px auto 5px auto;
     display: block; }
 
 @keyframes fadeIn {
@@ -176,7 +186,8 @@ body {
     font-weight: bold;
     font-size: 11px;
     position: relative;
-    z-index: 2; }
+    z-index: 2;
+    text-indent: 10px; }
     #pokemonAdd a:after {
       content: " ";
       width: 11px;
@@ -229,7 +240,7 @@ body {
     background: #FBFBFB; }
   .pokemon-list table td:nth-child(2) {
     text-align: center; }
-  .pokemon-list table tr:not(:first-child):hover {
+  .pokemon-list table tr:hover {
     background: #fbfbfb;
     cursor: pointer; }
   .pokemon-list table tr:not(:first-child):active {
