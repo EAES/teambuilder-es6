@@ -75,12 +75,7 @@ function renderPokemonTable(pokemon){
   if (html !== '') {
     suggestions.innerHTML = `
       <div id="pokemonListWrapper">
-        <table>
-          <th>ID</th>
-          <th>Sprite</th>
-          <th>Name</th>
-          <th>Type I</th>
-          <th>Type II</th>`
+        <table>`
           + html +
         `</table>
       </div>`;
@@ -168,7 +163,7 @@ const pokemonListNode = document.createElement('div');
       pokemonListNode.classList.add('pokemon-list');
 const pokemonModalCloseBtn = document.createElement('div');
       pokemonModalCloseBtn.classList.add('modal-close-button');
-      pokemonModalCloseBtn.innerHTML = '<img width="15" src="images/close.png">'
+      pokemonModalCloseBtn.innerHTML = '<img width="13" src="images/close.png">'
 
 document.body.appendChild(pokemonAddModal);
 pokemonAddModal.appendChild(pokemonListNode);
