@@ -157,12 +157,17 @@ function renderPokemonStats(pokemon){
 }
 
 //build DOM -> team stage
-const teamStageDiv = document.createElement('div');
-      teamStageDiv.setAttribute('id','teamStage');
-document.body.appendChild(teamStageDiv);
+const header = document.createElement('header');
+      document.body.appendChild(header);
+const teamStage = document.createElement('div');
+      teamStage.setAttribute('id','teamStage');
+document.body.appendChild(teamStage);
 
-const teamStageComponent = document.createElement('div');
-      teamStageComponent.classList.add('team-stage-component');
+for (var i = 0; i < 6; i++) {
+  const teamStageComponent = document.createElement('div');
+        teamStageComponent.classList.add('stage-component');
+  teamStage.appendChild(teamStageComponent);
+}
 
 //build DOM -> modal
 const pokemonAddModal = document.createElement('div');
