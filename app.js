@@ -119,6 +119,8 @@ function addToTeam(){
   team.map(function(member, key) {
       console.log(`${team[key].name}`);
   })
+
+  closeModal();
 }
 
 function closeModal(){
