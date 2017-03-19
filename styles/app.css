@@ -229,6 +229,8 @@ body {
     font-size: 13px;
     color: #898989;
     padding: 10px; }
+  .pokemon-list p {
+    padding-bottom: 10px; }
   .pokemon-list table {
     border-collapse: collapse;
     width: 95%;
