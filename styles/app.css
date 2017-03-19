@@ -23,7 +23,7 @@
 body {
   background: #898989; }
 
-.pokemon-add-modal {
+#pokemon-add-modal {
   margin: 1em auto;
   width: 90%;
   min-width: 300px;
@@ -32,7 +32,7 @@ body {
   box-shadow: 0 0 15px 1px #474747;
   position: relative;
   animation: .1s ease-in-out 0s zoomIn; }
-  .pokemon-add-modal .modal-close-button {
+  #pokemon-add-modal #modal-close-button {
     cursor: pointer;
     margin: 2px 2px 0 0;
     padding: 5px;
@@ -49,23 +49,23 @@ body {
     opacity: 1;
     transform: scale(1); } }
 
-.pokemon-list, .pokemon-quickview {
+#pokemon-list, #pokemon-quickview {
   display: block;
   width: 100%; }
 
-.pokemon-quickview {
+#pokemon-quickview {
   height: 240px;
   padding-top: 1em;
   box-sizing: border-box;
   position: relative; }
-  .pokemon-quickview .loader {
+  #pokemon-quickview .loader {
     width: 50px;
     display: block;
     margin: 0 auto;
     position: relative;
     top: 50%;
     transform: translateY(-50%); }
-  .pokemon-quickview h1 {
+  #pokemon-quickview h1 {
     text-align: center;
     text-transform: capitalize;
     margin: -5px 0 10px 0;
@@ -217,9 +217,9 @@ body {
     #pokemonAdd a:active, #pokemonAdd a:hover {
       background-color: #eee; }
 
-.pokemon-list {
+#pokemon-list {
   text-align: center; }
-  .pokemon-list input {
+  #pokemon-list input {
     display: block;
     width: 93%;
     margin: 1em auto;
@@ -229,39 +229,39 @@ body {
     font-size: 13px;
     color: #898989;
     padding: 10px; }
-  .pokemon-list p {
+  #pokemon-list p {
     padding-bottom: 10px; }
-  .pokemon-list table {
+  #pokemon-list table {
     border-collapse: collapse;
     width: 95%;
     margin: 0 auto;
     text-align: left; }
-    .pokemon-list table .type {
+    #pokemon-list table .type {
       display: block;
       text-align: center;
       width: 85%;
       padding: 3px 4px;
       font-size: 7px; }
-  .pokemon-list table th {
+  #pokemon-list table th {
     text-align: left;
     font-size: 14px;
     text-align: center; }
-    .pokemon-list table th:nth-child(3) {
+    #pokemon-list table th:nth-child(3) {
       text-align: left; }
-  .pokemon-list table tr {
+  #pokemon-list table tr {
     border-bottom: 1px solid #eee;
     font-size: 12px; }
-  .pokemon-list table td {
+  #pokemon-list table td {
     max-width: 65px; }
-  .pokemon-list table td:nth-child(1) {
+  #pokemon-list table td:nth-child(1) {
     text-align: center;
     background: #FBFBFB; }
-  .pokemon-list table td:nth-child(2) {
+  #pokemon-list table td:nth-child(2) {
     text-align: center; }
-  .pokemon-list table tr:hover {
+  #pokemon-list table tr:hover {
     background: #fbfbfb;
     cursor: pointer; }
-  .pokemon-list table tr:not(:first-child):active {
+  #pokemon-list table tr:not(:first-child):active {
     color: #D1D1D1; }
 
 .type {

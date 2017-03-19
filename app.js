@@ -156,15 +156,23 @@ function renderPokemonStats(pokemon){
   pokemonStatsGraph.innerHTML = html;
 }
 
-//build DOM
+//build DOM -> team stage
+const teamStageDiv = document.createElement('div');
+      teamStageDiv.setAttribute('id','teamStage');
+document.body.appendChild(teamStageDiv);
+
+const teamStageComponent = document.createElement('div');
+      teamStageComponent.classList.add('team-stage-component');
+
+//build DOM -> modal
 const pokemonAddModal = document.createElement('div');
-      pokemonAddModal.classList.add('pokemon-add-modal');
+      pokemonAddModal.setAttribute('id','pokemon-add-modal');
 const pokemonQuickView = document.createElement('div');
-      pokemonQuickView.classList.add('pokemon-quickview')
+      pokemonQuickView.setAttribute('id','pokemon-quickview')
 const pokemonListNode = document.createElement('div');
-      pokemonListNode.classList.add('pokemon-list');
+      pokemonListNode.setAttribute('id','pokemon-list');
 const pokemonModalCloseBtn = document.createElement('div');
-      pokemonModalCloseBtn.classList.add('modal-close-button');
+      pokemonModalCloseBtn.setAttribute('id','modal-close-button');
       pokemonModalCloseBtn.innerHTML = '<img width="13" src="images/close.png">'
 
 document.body.appendChild(pokemonAddModal);

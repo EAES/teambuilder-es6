@@ -30,7 +30,7 @@ body{
   background: #898989;
 }
 
-.pokemon-add-modal{
+#pokemon-add-modal{
   margin: 1em auto;
   width: 90%;
   min-width: 300px;
@@ -40,7 +40,7 @@ body{
   position: relative;
   animation: .1s ease-in-out 0s zoomIn;
 
-  .modal-close-button{
+  #modal-close-button{
     cursor: pointer;
     margin: 2px 2px 0 0;
     padding: 5px;
@@ -62,12 +62,12 @@ body{
   }
 }
 
-.pokemon-list, .pokemon-quickview{
+#pokemon-list, #pokemon-quickview{
   display: block;
   width: 100%;
 }
 
-.pokemon-quickview{
+#pokemon-quickview{
   height: 240px;
   padding-top: 1em;
   box-sizing: border-box;
@@ -289,7 +289,7 @@ body{
   }
 }
 
-.pokemon-list{
+#pokemon-list{
   text-align: center;
 
   input{
