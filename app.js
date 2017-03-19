@@ -192,6 +192,7 @@ function renderTeamStage(team){
 
 const header = document.createElement('header');
         document.body.appendChild(header);
+        header.innerHTML = '<img src="images/mainlogo.png">'
 
 //build DOM -> modal
 const pokemonAddModal = document.createElement('div');
