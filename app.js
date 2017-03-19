@@ -124,7 +124,13 @@ function addToTeam(){
 }
 
 function closeModal(){
-  pokemonAddModal.classList.add('hidden');
+  pokemonAddModal.classList.remove('show');
+  pokemonAddModal.classList.add('hide');
+}
+
+function openModal(){
+  pokemonAddModal.classList.remove('hide');
+  pokemonAddModal.classList.add('show');
 }
 
 function renderPokemonStats(pokemon){
@@ -172,6 +178,7 @@ for (var i = 0; i < 6; i++) {
 //build DOM -> modal
 const pokemonAddModal = document.createElement('div');
       pokemonAddModal.setAttribute('id','pokemon-add-modal');
+      pokemonAddModal.classList.add('hide');
 const pokemonQuickView = document.createElement('div');
       pokemonQuickView.setAttribute('id','pokemon-quickview')
 const pokemonListNode = document.createElement('div');
@@ -199,6 +206,10 @@ const suggestions = document.querySelector('.suggestions');
 const searchInput = document.querySelector('.search-pokemon');
 searchInput.addEventListener('keyup', displayPokemonMatches);
 pokemonModalCloseBtn.addEventListener('click', closeModal);
+const teamAddBtn = document.querySelector('#teamStage').querySelectorAll('.stage-component');
+  teamAddBtn.forEach(function(btn){
+    btn.addEventListener('click', openModal);
+  })
 
 //go
 getPokemonList('pokedex.json');
