@@ -49,7 +49,14 @@ body {
     background: #eee;
     width: 33.33%;
     height: 150px;
-    border: 1px solid #898989; }
+    border: 1px solid #898989;
+    text-align: center; }
+    #teamStage .stage-component img {
+      height: 80%;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 0; }
     #teamStage .stage-component:hover {
       cursor: pointer;
       background: #fff; }
@@ -65,7 +72,8 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  top: 1%; }
+  top: 1%;
+  z-index: 9999; }
   #pokemon-add-modal #modal-close-button {
     cursor: pointer;
     margin: 2px 2px 0 0;

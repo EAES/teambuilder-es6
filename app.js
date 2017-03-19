@@ -6,7 +6,8 @@ const pokemon = [];
 const apiUrl = 'http://pokeapi.co/api/v2/pokemon/';
 const apiLimit = 900;
 const apiOffset = 0;
-const team = [];
+const team = [null,null,null,null,null,null]
+let teamPosition = 0;
 let currPokemon = {};
 
 //functions
@@ -110,17 +111,13 @@ function buildPokemonList(data){
   renderPokemonTable(pokemon);
 }
 
-function addToTeam(){
-  if (team.length <= 5) {
-    team.push(currPokemon);
-  } else {
-    alert("too many pokemon, please clear one from your team");
-  }
-  team.map(function(member, key) {
-      console.log(`${team[key].name}`);
-  })
+function addToTeam(){  
+  team.splice(teamPosition, 1, currPokemon);
+  componentToUpdate = document.querySelector('.stage-component:nth-child('+(Number(teamPosition) + 1)+')');
+  componentToUpdate.innerHTML = `<img src="images/pokemon/${currPokemon.id}.png" />`;
+  renderTeamStage(team);
 
-  closeModal();
+  closeModal();  
 }
 
 function closeModal(){
@@ -129,6 +126,7 @@ function closeModal(){
 }
 
 function openModal(){
+  teamPosition = this.dataset.position;
   pokemonAddModal.classList.remove('hide');
   pokemonAddModal.classList.add('show');
 }
@@ -162,18 +160,38 @@ function renderPokemonStats(pokemon){
   pokemonStatsGraph.innerHTML = html;
 }
 
-//build DOM -> team stage
-const header = document.createElement('header');
-      document.body.appendChild(header);
-const teamStage = document.createElement('div');
-      teamStage.setAttribute('id','teamStage');
-document.body.appendChild(teamStage);
+function renderTeamStage(team){
 
-for (var i = 0; i < 6; i++) {
-  const teamStageComponent = document.createElement('div');
-        teamStageComponent.classList.add('stage-component');
-  teamStage.appendChild(teamStageComponent);
+  //build DOM -> team stage
+  function addStageComponents(team){
+    for (var i = 0; i < 6; i++) {
+      const teamStageComponent = document.createElement('div');
+            teamStageComponent.classList.add('stage-component');
+            teamStageComponent.setAttribute('data-position', i)
+      teamStage.appendChild(teamStageComponent);
+    }
+
+    const teamAddBtn = document.querySelector('#teamStage').querySelectorAll('.stage-component');
+      teamAddBtn.forEach(function(btn){
+        btn.addEventListener('click', openModal);
+    })
+  }
+
+  const teamStage = document.createElement('div');
+        teamStage.setAttribute('id','teamStage');
+  
+  if (!!document.querySelector('#teamStage')){
+    teamStage.innerHTML = '';
+  } else {
+    document.body.appendChild(teamStage);
+  }
+
+  addStageComponents(team);
+
 }
+
+const header = document.createElement('header');
+        document.body.appendChild(header);
 
 //build DOM -> modal
 const pokemonAddModal = document.createElement('div');
@@ -206,12 +224,10 @@ const suggestions = document.querySelector('.suggestions');
 const searchInput = document.querySelector('.search-pokemon');
 searchInput.addEventListener('keyup', displayPokemonMatches);
 pokemonModalCloseBtn.addEventListener('click', closeModal);
-const teamAddBtn = document.querySelector('#teamStage').querySelectorAll('.stage-component');
-  teamAddBtn.forEach(function(btn){
-    btn.addEventListener('click', openModal);
-  })
+
 
 //go
 getPokemonList('pokedex.json');
 updateQuickview(apiUrl+'1/');
+renderTeamStage(team)
 }

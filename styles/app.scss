@@ -60,6 +60,15 @@ body{
     width: 33.33%;
     height: 150px;
     border: 1px solid #898989;
+    text-align: center;
+
+    img{
+      height: 80%;
+      position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 0;
+    }
 
     &:hover{
       cursor: pointer;
@@ -80,6 +89,7 @@ body{
   left: 0;
   right: 0;
   top: 1%;
+  z-index: 9999;
 
   #modal-close-button{
     cursor: pointer;
