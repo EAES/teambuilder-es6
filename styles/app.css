@@ -62,15 +62,22 @@ header {
   #teamStage .stage-component {
     background: #eee;
     width: 33.33%;
-    height: 150px;
+    position: relative;
     border: 1px solid #898989;
+    padding: 1em;
     text-align: center; }
+    #teamStage .stage-component:before {
+      content: "";
+      display: block;
+      padding-top: 100%; }
     #teamStage .stage-component img {
-      height: 80%;
-      position: relative;
+      width: 50%;
+      position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 0; }
+      left: 0;
+      right: 0;
+      margin: 0 auto; }
     #teamStage .stage-component:hover {
       cursor: pointer;
       background: #fff; }
