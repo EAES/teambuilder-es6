@@ -36,7 +36,7 @@
   visibility: hidden; }
 
 body {
-  background: #898989; }
+  background: #000; }
 
 header {
   background-image: linear-gradient(-180deg, #464646 0%, #000000 100%);
@@ -60,7 +60,8 @@ header {
   margin: 0 auto;
   min-width: 300px; }
   #teamStage .stage-component {
-    background: #eee;
+    background: #ededed url("../images/stage-component-bg.png") 50% 50% no-repeat;
+    background-size: 75%;
     width: 33.33%;
     position: relative;
     border: 1px solid #898989;
@@ -71,16 +72,17 @@ header {
       display: block;
       padding-top: 100%; }
     #teamStage .stage-component img {
-      width: 50%;
+      width: 90%;
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 0%;
       left: 0;
       right: 0;
-      margin: 0 auto; }
+      margin: 0 auto;
+      filter: drop-shadow(1px 2px 0px #F9F9F9); }
     #teamStage .stage-component:hover {
       cursor: pointer;
-      background: #fff; }
+      background-color: #fff;
+      background-size: 70%; }
 
 #pokemon-add-modal {
   margin: 1em auto;

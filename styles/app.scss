@@ -44,7 +44,7 @@
 }
 
 body{
-  background: #898989;
+  background: #000;
 }
 
 header {
@@ -73,7 +73,8 @@ header {
   min-width: 300px;
 
   .stage-component{
-    background: #eee;
+    background: #ededed url('../images/stage-component-bg.png') 50% 50% no-repeat;
+    background-size: 75%;
     width: 33.33%;
     position: relative;
     border: 1px solid #898989;
@@ -87,18 +88,19 @@ header {
     }
 
     img{
-      width: 50%;
+      width: 90%;
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 0%;
       left: 0;
       right: 0;
       margin: 0 auto;
+      filter: drop-shadow(1px 2px 0px #F9F9F9);
     }
 
     &:hover{
       cursor: pointer;
-      background: #fff;
+      background-color: #fff;
+      background-size: 70%;
     }
   }
 }

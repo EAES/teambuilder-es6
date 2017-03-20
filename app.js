@@ -114,7 +114,7 @@ function buildPokemonList(data){
 function addToTeam(){  
   team.splice(teamPosition, 1, currPokemon);
   componentToUpdate = document.querySelector('.stage-component:nth-child('+(Number(teamPosition) + 1)+')');
-  componentToUpdate.innerHTML = `<img src="images/pokemon/${currPokemon.id}.png" />`;
+  componentToUpdate.innerHTML = `<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${currPokemon.id+'.png'}" />`;
   renderTeamStage(team);
 
   closeModal();  
