@@ -190,6 +190,27 @@ function renderTeamStage(team){
 
 }
 
+function defaultTypes(){
+  return ['NORMAL','FIRE','WATER','ELECTRIC','GRASS','ICE','FIGHTING','POISON','GROUND','FLYING','PSYCHIC','BUG','ROCK','GHOST','DRAGON','DARK','STEEL','FAIRY'].map((val)=> val.toLowerCase());
+}
+
+function renderTypeWeaknesses(types = defaultTypes()){
+  const list = types.sort().map((val)=>`<li class="type ${val}">${val}</li>`).join('');
+
+  const html = `
+    <h2>Your team is still weak to:</h2>
+    <ul class="type-list">
+    `+ list +`
+    </ul>`;
+  
+  const weaknessStageEl = document.createElement('div');
+        weaknessStageEl.setAttribute('id', 'teamWeaknesses');
+
+  weaknessStageEl.innerHTML = html;
+
+  document.body.appendChild(weaknessStageEl);
+}
+
 const header = document.createElement('header');
         document.body.appendChild(header);
         header.innerHTML = '<img src="images/mainlogo.png">'
@@ -230,5 +251,6 @@ pokemonModalCloseBtn.addEventListener('click', closeModal);
 //go
 getPokemonList('pokedex.json');
 updateQuickview(apiUrl+'1/');
-renderTeamStage(team)
+renderTeamStage(team);
+renderTypeWeaknesses();
 }
