@@ -1,6 +1,4 @@
 {
-	'use strict';
-
 	let mon;
 	const pokemon = [];
 	const apiUrl = 'http://pokeapi.co/api/v2/';
@@ -9,6 +7,7 @@
 	const team = new Array(6).fill(null);
 	let teamPosition = 0;
 	let currPokemon = {};
+	const weakArray = [];
 
 	//functions
 	function capturePokemon(url){
@@ -135,25 +134,26 @@
 		pokemonAddModal.classList.add('show');
 	}
 
-	function fetchWeaknesses(type){
+	function fetchTypeData(type){
 		return capturePokemon(apiUrl+'type/'+type);
 	}
 
 	function buildWeakArray(name){
-		const weakArray = [];
-
+		weakArray.push(name);
+		const newWeakArray = [ ...new Set(weakArray)];
+		renderTypeWeaknesses(newWeakArray);
 	}
-
+	
 	function determineWeaknesses(types){
 		weaknessStageEl.innerHTML = 'Calculating weaknesses...';
 
-		const weaknesses = types.map(type => fetchWeaknesses(type.type.name));
+		const weaknesses = types.map(type => fetchTypeData(type.type.name));
 
 		Promise.all(weaknesses)
 			.then(results => results.map(result =>
 				result.json().then(data =>
 					data.damage_relations.double_damage_from.map(type => 
-						console.log(type.name)
+							buildWeakArray(type.name)
 					)
 				)
 			));
@@ -274,7 +274,6 @@
 	const searchInput = document.querySelector('.search-pokemon');
 	searchInput.addEventListener('keyup', displayPokemonMatches);
 	pokemonModalCloseBtn.addEventListener('click', closeModal);
-
 
 	//go
 	getPokemonList('pokedex.json');
