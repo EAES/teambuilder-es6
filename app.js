@@ -1,9 +1,6 @@
 {
-	let mon;
 	const pokemon = [];
-	const apiUrl = 'http://pokeapi.co/api/v2/';
-	const apiLimit = 900;
-	const apiOffset = 0;
+	const apiUrl = 'https://pokeapi.co/api/v2/';
 	const team = new Array(6).fill(null);
 	let teamPosition = 0;
 	let currPokemon = {};
@@ -115,7 +112,7 @@
 
 		function addToTeam(){
 		team.splice(teamPosition, 1, currPokemon);
-		componentToUpdate = document.querySelector('.stage-component:nth-child('+(Number(teamPosition) + 1)+')');
+		let componentToUpdate = document.querySelector('.stage-component:nth-child('+(Number(teamPosition) + 1)+')');
 		componentToUpdate.innerHTML = `<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${currPokemon.id+'.png'}" />`;
 		renderTeamStage(team);
 
@@ -138,10 +135,14 @@
 		return capturePokemon(apiUrl+'type/'+type);
 	}
 
+	function removeStrengths(weaks){
+		console.log(weaks);
+	}
+
 	function buildWeakArray(name){
 		weakArray.push(name);
 		const newWeakArray = [ ...new Set(weakArray)];
-		renderTypeWeaknesses(newWeakArray);
+		removeStrengths(newWeakArray);
 	}
 	
 	function determineWeaknesses(types){
@@ -159,8 +160,7 @@
 			));
 	}
 
-
-	function renderPokemonStats(pokemon){
+	function renderPokemonStats(){
 		const pokemonStatsGraph = document.getElementById('pokemonStatsInfo');
 		let html = '';
 
@@ -168,7 +168,6 @@
 		const baseStatValues = [];
 		currPokemon.stats.map(stat => baseStatValues.push(stat.base_stat));
 		const baseStatMax = Math.max(...baseStatValues);
-		const statPercentages = [];
 
 		function calculatePercent(stat,baseStatMax){
 			const percent = stat/baseStatMax*100;
@@ -192,7 +191,7 @@
 	function renderTeamStage(team){
 
 		//build DOM -> team stage
-		function addStageComponents(team){
+		function addStageComponents(){
 			for (var i = 0; i < 6; i++) {
 			const teamStageComponent = document.createElement('div');
 					teamStageComponent.classList.add('stage-component');
@@ -209,7 +208,7 @@
 		const teamStage = document.createElement('div');
 				teamStage.setAttribute('id','teamStage');
 
-		if (!!document.querySelector('#teamStage')){
+		if (document.querySelector('#teamStage')){
 			teamStage.innerHTML = '';
 		} else {
 			document.body.appendChild(teamStage);
