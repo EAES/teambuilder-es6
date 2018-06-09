@@ -268,7 +268,7 @@ header {
     position: relative;
     top: -15px;
     z-index: 1; }
-  #pokemonAdd a {
+  #pokemonAdd button {
     border: 1px solid #7ED321;
     background: #fff;
     display: block;
@@ -283,8 +283,9 @@ header {
     font-size: 11px;
     position: relative;
     z-index: 2;
-    text-indent: 10px; }
-    #pokemonAdd a:after {
+    text-indent: 10px;
+    cursor: pointer; }
+    #pokemonAdd button:after {
       content: " ";
       width: 11px;
       height: 11px;
@@ -294,7 +295,7 @@ header {
       margin-left: 5px;
       background-image: url("../images/plus-glyph.png");
       background-size: 100%; }
-    #pokemonAdd a:active, #pokemonAdd a:hover {
+    #pokemonAdd button:active, #pokemonAdd button:hover {
       background-color: #eee; }
 
 #pokemon-list {

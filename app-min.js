@@ -32,14 +32,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	var renderQuickview = function renderQuickview(pokemon) {
 		var html = '\n\t\t\t<h1>' + pokemon.name + '</h1>\n\t\t\t<div id="pokemonInfo">\n\t\t\t<img src="images/pokemon/' + pokemon.id + '.png" />\n\t\t\t<ul>\n\t\t\t\t' + pokemon.types.map(function (type) {
 			return '<li><span class="type ' + type.type.name + '">' + type.type.name + '</span></li>';
-		}).join('') + '\n\t\t\t</ul>\n\t\t\t</div>\n\t\t\t<div id="pokemonStatsInfo"></div>\n\t\t\t<div id="pokemonAdd">\n\t\t\t<a href="#">Add to team</a>\n\t\t\t</div>\n\t\t';
+		}).join('') + '\n\t\t\t</ul>\n\t\t\t</div>\n\t\t\t<div id="pokemonStatsInfo"></div>\n\t\t\t<div id="pokemonAdd">\n\t\t\t<button>Add to team</button>\n\t\t\t</div>\n\t\t';
 
 		currPokemon = pokemon;
 
 		pokemonQuickView.innerHTML = html;
 
 		//attach event listener to add button on render of qv
-		var addBtn = document.getElementById('pokemonAdd').querySelector('a');
+		var addBtn = document.getElementById('pokemonAdd').querySelector('button');
 		addBtn.addEventListener('click', addToTeam);
 
 		renderPokemonStats(pokemon);

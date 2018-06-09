@@ -350,7 +350,7 @@ header {
     z-index: 1;
   }
 
-  a{
+  button{
     border: 1px solid #7ED321;
     background: #fff;
     display: block;
@@ -365,7 +365,8 @@ header {
     font-size: 11px;
     position: relative;
     z-index: 2;
-    text-indent: 10px;
+		text-indent: 10px;
+		cursor: pointer;
 
     &:after{
       content: " ";
