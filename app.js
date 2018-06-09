@@ -220,12 +220,22 @@
 	}
 
 	function renderTypeWeaknesses(types = defaultTypes()){
+
 		const list = types.sort().map((val)=>`<li class="type ${val}">${val}</li>`).join('');
-		const html = `
+		let html;
+
+		if (types.length === 0) {
+			html = `
+			<img src="images/confetti.png">
+			<h2>Your team has full coverage!!</h2>
+			<p>now get out there and battle!</p>`;
+		} else {
+			html = `
 			<h2>Your team is still weak to:</h2>
 			<ul class="type-list">
-			`+ list +`
+			`+ list + `
 			</ul>`;
+		}
 
 		weaknessStageEl.innerHTML = html;
 		document.body.appendChild(weaknessStageEl);

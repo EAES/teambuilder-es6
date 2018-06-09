@@ -214,10 +214,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	var renderTypeWeaknesses = function renderTypeWeaknesses() {
 		var types = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultTypes();
 
+
 		var list = types.sort().map(function (val) {
 			return '<li class="type ' + val + '">' + val + '</li>';
 		}).join('');
-		var html = '\n\t\t\t<h2>Your team is still weak to:</h2>\n\t\t\t<ul class="type-list">\n\t\t\t' + list + '\n\t\t\t</ul>';
+		var html = void 0;
+
+		if (types.length === 0) {
+			html = '\n\t\t\t<img src="images/confetti.png">\n\t\t\t<h2>Your team has full coverage!!</h2>\n\t\t\t<p>now get out there and battle!</p>';
+		} else {
+			html = '\n\t\t\t<h2>Your team is still weak to:</h2>\n\t\t\t<ul class="type-list">\n\t\t\t' + list + '\n\t\t\t</ul>';
+		}
 
 		weaknessStageEl.innerHTML = html;
 		document.body.appendChild(weaknessStageEl);
