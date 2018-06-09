@@ -100,7 +100,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		var currTypes = currPokemon.types.map(function (type) {
 			return type.type.name;
 		});
-		// console.log(currTypes);
 		calcWeaknesses(currTypes);
 	};
 
@@ -120,16 +119,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var calcWeaknesses = function calcWeaknesses(types) {
-		console.log(types);
 		weaknessStageEl.innerHTML = 'calculating weaknesses...';
-
-		var weak = [];
-		var strong = [];
 		var weaknesses = types.map(function (type) {
 			return fetchTypeData(type);
 		});
-
-		console.log(weaknesses);
 
 		Promise.all(weaknesses).then(function (results) {
 			return Promise.all(results.map(function (x) {
@@ -138,19 +131,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		}).then(function (results) {
 			return results.map(function (x) {
 				x.damage_relations.double_damage_from.map(function (type) {
-					return weak.push(type.name);
+					return weakArray.push(type.name);
 				});
 				x.damage_relations.double_damage_to.map(function (type) {
-					return strong.push(type.name);
+					return strongArray.push(type.name);
 				});
 			});
 		}).then(function () {
-			var filteredTypes = weak.filter(function (type) {
-				if (!strong.includes(type)) {
+			var filteredTypes = weakArray.filter(function (type) {
+				if (!strongArray.includes(type)) {
 					return type;
 				}
 			});
-			console.log(filteredTypes);
 			renderTypeWeaknesses([].concat(_toConsumableArray(new Set(filteredTypes))));
 		});
 	};
@@ -236,6 +228,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	var team = new Array(6).fill(null);
 	var teamPosition = 0;
 	var currPokemon = {};
+	var weakArray = [];
+	var strongArray = [];
 
 	var header = document.createElement('header');
 	document.body.appendChild(header);

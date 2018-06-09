@@ -4,6 +4,8 @@
 	const team = new Array(6).fill(null);
 	let teamPosition = 0;
 	let currPokemon = {};
+	const weakArray = [];
+	const strongArray = [];
 
 	//functions
 	function capturePokemon(url){
@@ -117,7 +119,6 @@
 		renderTeamStage(team);
 		closeModal();
 		const currTypes = currPokemon.types.map(type => type.type.name);
-		// console.log(currTypes);
 		calcWeaknesses(currTypes);
 	}
 
@@ -137,28 +138,21 @@
 	}
 	
 	function calcWeaknesses(types) {
-		console.log(types);
 		weaknessStageEl.innerHTML = 'calculating weaknesses...';
-
-		const weak = [];
-		const strong = [];
 		const weaknesses = types.map(type => fetchTypeData(type));
-
-		console.log(weaknesses);
 
 		Promise.all(weaknesses)
 			.then(results => Promise.all(results.map(x => x.json())))
 			.then(results => results.map(x => {
-				x.damage_relations.double_damage_from.map(type => weak.push(type.name));
-				x.damage_relations.double_damage_to.map(type => strong.push(type.name));
+				x.damage_relations.double_damage_from.map(type => weakArray.push(type.name));
+				x.damage_relations.double_damage_to.map(type => strongArray.push(type.name));
 			}))
 			.then(() => {
-				const filteredTypes = weak.filter(type => {
-					if (!strong.includes(type)) {
+				const filteredTypes = weakArray.filter(type => {
+					if (!strongArray.includes(type)) {
 						return type
 					}
 				});
-				console.log(filteredTypes);
 				renderTypeWeaknesses([...new Set(filteredTypes)]);
 			});
 	}
