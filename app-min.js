@@ -94,10 +94,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		team.splice(teamPosition, 1, currPokemon);
 		var componentToUpdate = document.querySelector('.stage-component:nth-child(' + (Number(teamPosition) + 1) + ')');
 		componentToUpdate.innerHTML = '<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + (currPokemon.id + '.png') + '" />';
-		renderTeamStage(team);
 
+		renderTeamStage(team);
 		closeModal();
-		renderPokemonStats(determineWeaknesses(currPokemon.types));
+		var currTypes = currPokemon.types.map(function (type) {
+			return type.type.name;
+		});
+		// console.log(currTypes);
+		calcWeaknesses(currTypes);
 	};
 
 	var closeModal = function closeModal() {
@@ -115,31 +119,39 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		return capturePokemon(apiUrl + 'type/' + type);
 	};
 
-	var removeStrengths = function removeStrengths(weaks) {
-		console.log(weaks);
-	};
+	var calcWeaknesses = function calcWeaknesses(types) {
+		console.log(types);
+		weaknessStageEl.innerHTML = 'calculating weaknesses...';
 
-	var buildWeakArray = function buildWeakArray(name) {
-		weakArray.push(name);
-		var newWeakArray = [].concat(_toConsumableArray(new Set(weakArray)));
-		removeStrengths(newWeakArray);
-	};
-
-	var determineWeaknesses = function determineWeaknesses(types) {
-		weaknessStageEl.innerHTML = 'Calculating weaknesses...';
-
+		var weak = [];
+		var strong = [];
 		var weaknesses = types.map(function (type) {
-			return fetchTypeData(type.type.name);
+			return fetchTypeData(type);
 		});
 
+		console.log(weaknesses);
+
 		Promise.all(weaknesses).then(function (results) {
-			return results.map(function (result) {
-				return result.json().then(function (data) {
-					return data.damage_relations.double_damage_from.map(function (type) {
-						return buildWeakArray(type.name);
-					});
+			return Promise.all(results.map(function (x) {
+				return x.json();
+			}));
+		}).then(function (results) {
+			return results.map(function (x) {
+				x.damage_relations.double_damage_from.map(function (type) {
+					return weak.push(type.name);
+				});
+				x.damage_relations.double_damage_to.map(function (type) {
+					return strong.push(type.name);
 				});
 			});
+		}).then(function () {
+			var filteredTypes = weak.filter(function (type) {
+				if (!strong.includes(type)) {
+					return type;
+				}
+			});
+			console.log(filteredTypes);
+			renderTypeWeaknesses([].concat(_toConsumableArray(new Set(filteredTypes))));
 		});
 	};
 
@@ -213,11 +225,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		var list = types.sort().map(function (val) {
 			return '<li class="type ' + val + '">' + val + '</li>';
 		}).join('');
-
 		var html = '\n\t\t\t<h2>Your team is still weak to:</h2>\n\t\t\t<ul class="type-list">\n\t\t\t' + list + '\n\t\t\t</ul>';
 
 		weaknessStageEl.innerHTML = html;
-
 		document.body.appendChild(weaknessStageEl);
 	};
 
@@ -226,7 +236,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	var team = new Array(6).fill(null);
 	var teamPosition = 0;
 	var currPokemon = {};
-	var weakArray = [];
 
 	var header = document.createElement('header');
 	document.body.appendChild(header);
