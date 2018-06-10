@@ -230,6 +230,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		document.body.appendChild(weaknessStageEl);
 	};
 
+	var startOver = function startOver() {
+		console.log('starting over...');
+		pokemon.length = 0;
+		weakArray.length = 0;
+		strongArray.length = 0;
+		renderTypeWeaknesses();
+		team.fill(null);
+		Array.from(document.body.querySelectorAll('.stage-component')).map(function (x) {
+			return x.innerHTML = '';
+		});
+	};
+
 	var pokemon = [];
 	var apiUrl = 'https://pokeapi.co/api/v2/';
 	var team = new Array(6).fill(null);
@@ -241,6 +253,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	var header = document.createElement('header');
 	document.body.appendChild(header);
 	header.innerHTML = '<img src="images/mainlogo.png">';
+	var startOverButton = document.createElement('button');
+	startOverButton.setAttribute('class', 'clear-stage');
+	startOverButton.innerText = 'start over';
+	header.appendChild(startOverButton);
 
 	//build DOM -> modal
 	var pokemonAddModal = document.createElement('div');
@@ -271,6 +287,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	var searchInput = document.querySelector('.search-pokemon');
 	searchInput.addEventListener('keyup', displayPokemonMatches);
 	pokemonModalCloseBtn.addEventListener('click', closeModal);
+	startOverButton.addEventListener('click', startOver);
 
 	//go
 	getPokemonList('pokedex.json');

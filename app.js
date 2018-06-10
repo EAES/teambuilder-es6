@@ -217,11 +217,11 @@
 			const teamStageComponent = document.createElement('div');
 					teamStageComponent.classList.add('stage-component');
 					teamStageComponent.setAttribute('data-position', i)
-			teamStage.appendChild(teamStageComponent);
+					teamStage.appendChild(teamStageComponent);
 			}
 
 			const teamAddBtn = document.querySelector('#teamStage').querySelectorAll('.stage-component');
-			teamAddBtn.forEach(function(btn){
+						teamAddBtn.forEach(function(btn){
 				btn.addEventListener('click', openModal);
 			})
 		}
@@ -265,23 +265,37 @@
 		document.body.appendChild(weaknessStageEl);
 	}
 
+	function startOver() {
+		console.log('starting over...');
+		pokemon.length = 0;
+		weakArray.length = 0;
+		strongArray.length = 0;
+		renderTypeWeaknesses();
+		team.fill(null);
+		Array.from(document.body.querySelectorAll('.stage-component')).map(x=>x.innerHTML='');
+	}
+
 	const header = document.createElement('header');
-			document.body.appendChild(header);
-			header.innerHTML = '<img src="images/mainlogo.png">'
+				document.body.appendChild(header);
+				header.innerHTML = '<img src="images/mainlogo.png">'
+	const startOverButton = document.createElement('button');
+				startOverButton.setAttribute('class', 'clear-stage');
+				startOverButton.innerText = 'start over';
+				header.appendChild(startOverButton);
 
 	//build DOM -> modal
 	const pokemonAddModal = document.createElement('div');
-		pokemonAddModal.setAttribute('id','pokemon-add-modal');
-		pokemonAddModal.classList.add('hide');
+				pokemonAddModal.setAttribute('id','pokemon-add-modal');
+				pokemonAddModal.classList.add('hide');
 	const pokemonQuickView = document.createElement('div');
-		pokemonQuickView.setAttribute('id','pokemon-quickview')
+				pokemonQuickView.setAttribute('id','pokemon-quickview')
 	const pokemonListNode = document.createElement('div');
-		pokemonListNode.setAttribute('id','pokemon-list');
+				pokemonListNode.setAttribute('id','pokemon-list');
 	const weaknessStageEl = document.createElement('div');
-		weaknessStageEl.setAttribute('id', 'teamWeaknesses');
+				weaknessStageEl.setAttribute('id', 'teamWeaknesses');
 	const pokemonModalCloseBtn = document.createElement('div');
-		pokemonModalCloseBtn.setAttribute('id','modal-close-button');
-		pokemonModalCloseBtn.innerHTML = '<img width="13" src="images/close.png">'
+				pokemonModalCloseBtn.setAttribute('id','modal-close-button');
+				pokemonModalCloseBtn.innerHTML = '<img width="13" src="images/close.png">'
 
 	document.body.appendChild(pokemonAddModal);
 	pokemonAddModal.appendChild(pokemonListNode);
@@ -302,6 +316,7 @@
 	const searchInput = document.querySelector('.search-pokemon');
 	searchInput.addEventListener('keyup', displayPokemonMatches);
 	pokemonModalCloseBtn.addEventListener('click', closeModal);
+	startOverButton.addEventListener('click', startOver);
 
 	//go
 	getPokemonList('pokedex.json');
