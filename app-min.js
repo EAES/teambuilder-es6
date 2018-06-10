@@ -231,15 +231,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var startOver = function startOver() {
-		console.log('starting over...');
-		pokemon.length = 0;
-		weakArray.length = 0;
-		strongArray.length = 0;
-		renderTypeWeaknesses();
-		team.fill(null);
-		Array.from(document.body.querySelectorAll('.stage-component')).map(function (x) {
-			return x.innerHTML = '';
-		});
+		if (!team.every(function (x) {
+			return x === null;
+		})) {
+			if (confirm('This will clear your stage of all pokémon. Are you sure?')) {
+				weakArray.length = 0;
+				strongArray.length = 0;
+				renderTypeWeaknesses();
+				team.fill(null);
+				Array.from(document.body.querySelectorAll('.stage-component')).map(function (x) {
+					return x.innerHTML = '';
+				});
+			}
+		}
 	};
 
 	var pokemon = [];

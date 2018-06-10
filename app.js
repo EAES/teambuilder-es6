@@ -265,14 +265,16 @@
 		document.body.appendChild(weaknessStageEl);
 	}
 
-	function startOver() {
-		console.log('starting over...');
-		pokemon.length = 0;
-		weakArray.length = 0;
-		strongArray.length = 0;
-		renderTypeWeaknesses();
-		team.fill(null);
-		Array.from(document.body.querySelectorAll('.stage-component')).map(x=>x.innerHTML='');
+	function startOver() {	
+		if (!team.every( x => x === null)) {
+			if (confirm('This will clear your stage of all pokémon. Are you sure?')) {
+				weakArray.length = 0;
+				strongArray.length = 0;
+				renderTypeWeaknesses();
+				team.fill(null);
+				Array.from(document.body.querySelectorAll('.stage-component')).map(x => x.innerHTML = '');
+			}
+		}
 	}
 
 	const header = document.createElement('header');

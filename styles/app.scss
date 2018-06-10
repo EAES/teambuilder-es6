@@ -1,3 +1,5 @@
+@import 'https://use.fontawesome.com/releases/v5.0.13/css/all.css';
+
 @font-face {
   font-family:"Pokemon Pixel Font Regular";
   src:url("../fonts/pokemon_pixel_font.eot?") format("eot"),
@@ -52,7 +54,21 @@ header {
   height: 100px;
   max-width: 600px;
   margin: 0 auto;
-  min-width: 300px;
+	min-width: 300px;
+	position: relative;
+	
+	.clear-stage {
+    background: transparent;
+    color: white;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 3px;
+    font-size: 9px;
+    cursor: pointer;
+    position: absolute;
+		right: 3em;
+	}
 
   img{
     width: 50%;
