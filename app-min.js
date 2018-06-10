@@ -30,7 +30,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var renderQuickview = function renderQuickview(pokemon) {
-		var html = '\n\t\t\t<h1>' + pokemon.name + '</h1>\n\t\t\t<div id="pokemonInfo">\n\t\t\t<img src="images/pokemon/' + pokemon.id + '.png" />\n\t\t\t<ul>\n\t\t\t\t' + pokemon.types.map(function (type) {
+		var html = '\n\t\t\t<h1>' + pokemon.name + '</h1>\n\t\t\t<div id="pokemonInfo">\n\t\t\t<img src="images/pokemon/sugimori/' + pokemon.id + '.png" />\n\t\t\t<ul>\n\t\t\t\t' + pokemon.types.map(function (type) {
 			return '<li><span class="type ' + type.type.name + '">' + type.type.name + '</span></li>';
 		}).join('') + '\n\t\t\t</ul>\n\t\t\t</div>\n\t\t\t<div id="pokemonStatsInfo"></div>\n\t\t\t<div id="pokemonAdd">\n\t\t\t<button>Add to team</button>\n\t\t\t</div>\n\t\t';
 
@@ -53,10 +53,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var renderPokemonTable = function renderPokemonTable(pokemon) {
-		var imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+		var imgUrl = 'images/pokemon/icons/';
 
 		var html = pokemon.map(function (mon) {
-			return '<tr>\n\t\t\t<td>' + mon.id + '</td>\n\t\t\t<td>' + (mon.id < 722 ? '<img height="40" src="' + (imgUrl + parseInt(mon.id) + '.png') + '">' : '<img height="30" src="images/noimage-unown.png">') + '</td>\n\t\t\t<td>' + mon.name + '</td>\n\t\t\t<td><span class="type ' + mon.type_i.toLowerCase() + '">' + mon.type_i + '</span></td>\n\t\t\t<td><span class="type ' + mon.type_ii.toLowerCase() + '">' + mon.type_ii + '</span></td>\n\t\t\t</tr>';
+			return '<tr>\n\t\t\t<td>' + mon.id + '</td>\n\t\t\t<td><img height=\'40\' src=' + (imgUrl + mon.name.toLowerCase().replace(/ /g, '-').replace(/\.|\(|\)|\:|\'|/g, '').replace(/é/g, 'e').replace(/♀/g, '-f').replace(/♂/g, '-m').replace('shaymin-s', 'shaymin-sky').replace('meloetta-a', 'meloetta').replace('wormadam-p', 'wormadam').replace('wormadam-s', 'wormadam-sandy').replace('wormadam-t', 'wormadam-trash').replace('giratina-o', 'giratina-origin').replace('darmanitan-z', 'darmanitan-zen').replace('hoopa-c', 'hoopa').replace('-spin', '-fan').replace('-cut', '-mow').replace(/-n\b/, '').replace(/-s\b/, '-speed').replace('-a', '-attack').replace('-d', '-defense').replace('-p', '-pirouette').replace('-u', '-unbound')) + '.png></td>\n\t\t\t<td>' + mon.name + '</td>\n\t\t\t<td><span class="type ' + mon.type_i.toLowerCase() + '">' + mon.type_i + '</span></td>\n\t\t\t<td><span class="type ' + mon.type_ii.toLowerCase() + '">' + mon.type_ii + '</span></td>\n\t\t\t</tr>';
 		}).join('');
 		if (html !== '') {
 			suggestions.innerHTML = '\n\t\t\t<div id="pokemonListWrapper">\n\t\t\t\t<table>' + html + '</table>\n\t\t\t</div>';
@@ -177,7 +177,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var renderTeamStage = function renderTeamStage(team) {
-
+		console.log(team);
 		//build DOM -> team stage
 		function addStageComponents() {
 			for (var i = 0; i < 6; i++) {

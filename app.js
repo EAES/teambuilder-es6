@@ -32,7 +32,7 @@
 		const html = `
 			<h1>${pokemon.name}</h1>
 			<div id="pokemonInfo">
-			<img src="images/pokemon/${pokemon.id}.png" />
+			<img src="images/pokemon/sugimori/${pokemon.id}.png" />
 			<ul>
 				${pokemon.types.map(type => `<li><span class="type ${type.type.name}">${type.type.name}</span></li>`).join('')}
 			</ul>
@@ -62,12 +62,36 @@
 	}
 
 	function renderPokemonTable(pokemon){
-		const imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+		const imgUrl = 'images/pokemon/icons/';
 
 		const html = pokemon.map(mon=>{
 			return `<tr>
 			<td>${mon.id}</td>
-			<td>${mon.id < 722 ? `<img height="40" src="${imgUrl+parseInt(mon.id)+'.png'}">` : `<img height="30" src="images/noimage-unown.png">` }</td>
+			<td><img height='40' src=${
+				imgUrl + mon.name
+					.toLowerCase()
+					.replace(/ /g, '-')
+					.replace(/\.|\(|\)|\:|\'|/g, '')
+					.replace(/é/g,'e')
+					.replace(/♀/g,'-f')
+					.replace(/♂/g,'-m')
+					.replace('shaymin-s','shaymin-sky')
+					.replace('meloetta-a','meloetta')
+					.replace('wormadam-p','wormadam')
+					.replace('wormadam-s','wormadam-sandy')
+					.replace('wormadam-t','wormadam-trash')
+					.replace('giratina-o','giratina-origin')
+					.replace('darmanitan-z','darmanitan-zen')
+					.replace('hoopa-c','hoopa')
+					.replace('-spin','-fan')
+					.replace('-cut','-mow')
+					.replace(/-n\b/,'')
+					.replace(/-s\b/,'-speed')
+					.replace('-a','-attack')
+					.replace('-d','-defense')
+					.replace('-p','-pirouette')
+					.replace('-u','-unbound')
+			}.png></td>
 			<td>${mon.name}</td>
 			<td><span class="type ${mon.type_i.toLowerCase()}">${mon.type_i}</span></td>
 			<td><span class="type ${mon.type_ii.toLowerCase()}">${mon.type_ii}</span></td>
@@ -186,7 +210,7 @@
 	}
 
 	function renderTeamStage(team){
-
+		console.log(team);
 		//build DOM -> team stage
 		function addStageComponents(){
 			for (var i = 0; i < 6; i++) {
