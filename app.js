@@ -266,6 +266,7 @@
 	}
 
 	function startOver() {	
+		console.log('starting over...')
 		if (!team.every( x => x === null)) {
 			if (confirm('This will clear your stage of all pokémon. Are you sure?')) {
 				weakArray.length = 0;

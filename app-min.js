@@ -231,6 +231,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var startOver = function startOver() {
+		console.log('starting over...');
 		if (!team.every(function (x) {
 			return x === null;
 		})) {

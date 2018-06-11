@@ -59,15 +59,26 @@ header {
 	
 	.clear-stage {
     background: transparent;
-    color: white;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    border: 1px solid white;
-    border-radius: 3px;
-    font-size: 9px;
-    cursor: pointer;
-    position: absolute;
-		right: 3em;
+		color: white;
+		text-transform: uppercase;
+		padding: 4px 8px;
+		border: 1px solid white;
+		border-radius: 3px;
+		font-size: 9px;
+		cursor: pointer;
+		position: absolute;
+		right: 1em;
+		bottom: 1em;
+
+		&:before {
+			content: '\f00d';
+			margin-right: 5px;
+			font-family: 'FontAwesome';
+		}
+
+		&:active {
+			padding: 3px 8px;
+		}
 	}
 
   img{
