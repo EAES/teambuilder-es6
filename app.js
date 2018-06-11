@@ -2,11 +2,11 @@
 	const pokemon = [];
 	const apiUrl = 'https://pokeapi.co/api/v2/';
 	const team = new Array(6).fill(null);
+	const weakArray = [[], [], [], [], [], []];
+	const strongArray = [[], [], [], [], [], []];
 	let teamPosition = 0;
 	let currPokemon = {};
-	const weakArray = [];
-	const strongArray = [];
-
+	
 	//functions
 	function capturePokemon(url){
 		return fetch(url);
@@ -164,16 +164,20 @@
 	function calcWeaknesses(types) {
 		weaknessStageEl.innerHTML = 'calculating weaknesses...';
 		const weaknesses = types.map(type => fetchTypeData(type));
+		weakArray[teamPosition].length = 0;
+		strongArray[teamPosition].length = 0;
 
 		Promise.all(weaknesses)
 			.then(results => Promise.all(results.map(x => x.json())))
 			.then(results => results.map(x => {
-				x.damage_relations.double_damage_from.map(type => weakArray.push(type.name));
-				x.damage_relations.double_damage_to.map(type => strongArray.push(type.name));
+				x.damage_relations.double_damage_from.map(type => weakArray[teamPosition].push(type.name));
+				x.damage_relations.double_damage_to.map(type => strongArray[teamPosition].push(type.name));
 			}))
 			.then(() => {
-				const filteredTypes = weakArray.filter(type => {
-					if (!strongArray.includes(type)) {
+				const w = [].concat(...weakArray);
+				const s = [].concat(...strongArray);
+				const filteredTypes = w.filter(type => {
+					if (!s.includes(type)) {
 						return type
 					}
 				});
@@ -210,7 +214,6 @@
 	}
 
 	function renderTeamStage(team){
-		console.log(team);
 		//build DOM -> team stage
 		function addStageComponents(){
 			for (var i = 0; i < 6; i++) {
@@ -244,7 +247,6 @@
 	}
 
 	function renderTypeWeaknesses(types = defaultTypes()){
-
 		const list = types.sort().map((val)=>`<li class="type ${val}">${val}</li>`).join('');
 		let html;
 
@@ -266,11 +268,11 @@
 	}
 
 	function startOver() {	
-		console.log('starting over...')
+		console.log('やり直します！')
 		if (!team.every( x => x === null)) {
 			if (confirm('This will clear your stage of all pokémon. Are you sure?')) {
-				weakArray.length = 0;
-				strongArray.length = 0;
+				weakArray.map(x=>x.length=0);
+				strongArray.map(x => x.length = 0);
 				renderTypeWeaknesses();
 				team.fill(null);
 				Array.from(document.body.querySelectorAll('.stage-component')).map(x => x.innerHTML = '');

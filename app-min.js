@@ -123,6 +123,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		var weaknesses = types.map(function (type) {
 			return fetchTypeData(type);
 		});
+		weakArray[teamPosition].length = 0;
+		strongArray[teamPosition].length = 0;
 
 		Promise.all(weaknesses).then(function (results) {
 			return Promise.all(results.map(function (x) {
@@ -131,15 +133,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		}).then(function (results) {
 			return results.map(function (x) {
 				x.damage_relations.double_damage_from.map(function (type) {
-					return weakArray.push(type.name);
+					return weakArray[teamPosition].push(type.name);
 				});
 				x.damage_relations.double_damage_to.map(function (type) {
-					return strongArray.push(type.name);
+					return strongArray[teamPosition].push(type.name);
 				});
 			});
 		}).then(function () {
-			var filteredTypes = weakArray.filter(function (type) {
-				if (!strongArray.includes(type)) {
+			var _ref, _ref2;
+
+			var w = (_ref = []).concat.apply(_ref, weakArray);
+			var s = (_ref2 = []).concat.apply(_ref2, strongArray);
+			var filteredTypes = w.filter(function (type) {
+				if (!s.includes(type)) {
 					return type;
 				}
 			});
@@ -177,7 +183,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var renderTeamStage = function renderTeamStage(team) {
-		console.log(team);
 		//build DOM -> team stage
 		function addStageComponents() {
 			for (var i = 0; i < 6; i++) {
@@ -214,7 +219,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	var renderTypeWeaknesses = function renderTypeWeaknesses() {
 		var types = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultTypes();
 
-
 		var list = types.sort().map(function (val) {
 			return '<li class="type ' + val + '">' + val + '</li>';
 		}).join('');
@@ -231,13 +235,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var startOver = function startOver() {
-		console.log('starting over...');
+		console.log('やり直します！');
 		if (!team.every(function (x) {
 			return x === null;
 		})) {
 			if (confirm('This will clear your stage of all pokémon. Are you sure?')) {
-				weakArray.length = 0;
-				strongArray.length = 0;
+				weakArray.map(function (x) {
+					return x.length = 0;
+				});
+				strongArray.map(function (x) {
+					return x.length = 0;
+				});
 				renderTypeWeaknesses();
 				team.fill(null);
 				Array.from(document.body.querySelectorAll('.stage-component')).map(function (x) {
@@ -250,10 +258,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	var pokemon = [];
 	var apiUrl = 'https://pokeapi.co/api/v2/';
 	var team = new Array(6).fill(null);
+	var weakArray = [[], [], [], [], [], []];
+	var strongArray = [[], [], [], [], [], []];
 	var teamPosition = 0;
 	var currPokemon = {};
-	var weakArray = [];
-	var strongArray = [];
 
 	var header = document.createElement('header');
 	document.body.appendChild(header);
