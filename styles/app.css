@@ -177,7 +177,8 @@ header {
 
 #pokemonListWrapper {
   max-height: 41vh;
-  overflow: scroll; }
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
 
 #pokemonInfo {
   float: left;
