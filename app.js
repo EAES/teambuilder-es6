@@ -32,7 +32,7 @@
 		const html = `
 			<h1>${pokemon.name}</h1>
 			<div id="pokemonInfo">
-			<img src="images/pokemon/sugimori/${pokemon.id}.png" />
+			<img src="images/pokemon/sugimori/compressed/${pokemon.id}.png" />
 			<ul>
 				${pokemon.types.map(type => `<li><span class="type ${type.type.name}">${type.type.name}</span></li>`).join('')}
 			</ul>

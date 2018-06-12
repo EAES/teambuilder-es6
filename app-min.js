@@ -30,7 +30,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var renderQuickview = function renderQuickview(pokemon) {
-		var html = '\n\t\t\t<h1>' + pokemon.name + '</h1>\n\t\t\t<div id="pokemonInfo">\n\t\t\t<img src="images/pokemon/sugimori/' + pokemon.id + '.png" />\n\t\t\t<ul>\n\t\t\t\t' + pokemon.types.map(function (type) {
+		var html = '\n\t\t\t<h1>' + pokemon.name + '</h1>\n\t\t\t<div id="pokemonInfo">\n\t\t\t<img src="images/pokemon/sugimori/compressed/' + pokemon.id + '.png" />\n\t\t\t<ul>\n\t\t\t\t' + pokemon.types.map(function (type) {
 			return '<li><span class="type ' + type.type.name + '">' + type.type.name + '</span></li>';
 		}).join('') + '\n\t\t\t</ul>\n\t\t\t</div>\n\t\t\t<div id="pokemonStatsInfo"></div>\n\t\t\t<div id="pokemonAdd">\n\t\t\t<button>Add to team</button>\n\t\t\t</div>\n\t\t';
 
