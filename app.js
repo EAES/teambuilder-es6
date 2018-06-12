@@ -25,7 +25,7 @@
 	function getPokemonList(url){
 		fetch(url)
 			.then(results => results.json())
-			.then(data => buildPokemonList(data));
+			.then(data => preparePokemonList(data));
 	}
 
 	function renderQuickview(pokemon){		
@@ -54,7 +54,7 @@
 		renderPokemonStats(pokemon);
 	}
 
-	function findPokemonMatch(matchWord, pokemon){
+	function matchPokemon(matchWord, pokemon){
 		return pokemon.filter(mon=>{
 			const regex = new RegExp(matchWord, 'gi');
 			return mon.name.match(regex);
@@ -122,12 +122,12 @@
 		}
 	}
 
-	function displayPokemonMatches(){
-		const matchArray = findPokemonMatch(this.value, pokemon);
+	function renderPokemonMatches(){
+		const matchArray = matchPokemon(this.value, pokemon);
 		renderPokemonTable(matchArray);
 	}
 
-	function buildPokemonList(data){
+	function preparePokemonList(data){
 		data.map(result => {
 			!result.name.match(/-mega|chu-/)?pokemon.push(result) : ''
 		});
@@ -215,7 +215,7 @@
 
 	function renderTeamStage(team){
 		//build DOM -> team stage
-		function addStageComponents(){
+		function renderStageComponents(){
 			for (var i = 0; i < 6; i++) {
 			const teamStageComponent = document.createElement('div');
 					teamStageComponent.classList.add('stage-component');
@@ -225,12 +225,12 @@
 
 			const teamAddBtn = document.querySelector('#teamStage').querySelectorAll('.stage-component');
 						teamAddBtn.forEach(function(btn){
-				btn.addEventListener('click', openModal);
-			})
+							btn.addEventListener('click', openModal);
+						})
 		}
 
 		const teamStage = document.createElement('div');
-				teamStage.setAttribute('id','teamStage');
+					teamStage.setAttribute('id','teamStage');
 
 		if (document.querySelector('#teamStage')){
 			teamStage.innerHTML = '';
@@ -238,7 +238,7 @@
 			document.body.appendChild(teamStage);
 		}
 
-		addStageComponents(team);
+		renderStageComponents(team);
 
 	}
 
@@ -318,7 +318,7 @@
 				${Array(7).fill().map((_, i) => `<option value="${i+1}">Gen ${i+1}</option>`)}
 			</select>
 			<div class="suggestions">
-			<p>fetching list...</p>
+				<p>fetching list...</p>
 			</div>`;
 
 	pokemonListNode.innerHTML = pokemonListInput;
@@ -327,7 +327,7 @@
 
 	//event listeners
 	const searchInput = document.querySelector('.search-pokemon');
-	searchInput.addEventListener('keyup', displayPokemonMatches);
+	searchInput.addEventListener('keyup', renderPokemonMatches);
 	pokemonModalCloseBtn.addEventListener('click', closeModal);
 	startOverButton.addEventListener('click', startOver);
 

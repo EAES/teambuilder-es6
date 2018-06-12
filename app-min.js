@@ -25,7 +25,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		fetch(url).then(function (results) {
 			return results.json();
 		}).then(function (data) {
-			return buildPokemonList(data);
+			return preparePokemonList(data);
 		});
 	};
 
@@ -45,7 +45,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		renderPokemonStats(pokemon);
 	};
 
-	var findPokemonMatch = function findPokemonMatch(matchWord, pokemon) {
+	var matchPokemon = function matchPokemon(matchWord, pokemon) {
 		return pokemon.filter(function (mon) {
 			var regex = new RegExp(matchWord, 'gi');
 			return mon.name.match(regex);
@@ -77,12 +77,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		}
 	};
 
-	var displayPokemonMatches = function displayPokemonMatches() {
-		var matchArray = findPokemonMatch(this.value, pokemon);
+	var renderPokemonMatches = function renderPokemonMatches() {
+		var matchArray = matchPokemon(this.value, pokemon);
 		renderPokemonTable(matchArray);
 	};
 
-	var buildPokemonList = function buildPokemonList(data) {
+	var preparePokemonList = function preparePokemonList(data) {
 		data.map(function (result) {
 			!result.name.match(/-mega|chu-/) ? pokemon.push(result) : '';
 		});
@@ -184,7 +184,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 	var renderTeamStage = function renderTeamStage(team) {
 		//build DOM -> team stage
-		function addStageComponents() {
+		function renderStageComponents() {
 			for (var i = 0; i < 6; i++) {
 				var teamStageComponent = document.createElement('div');
 				teamStageComponent.classList.add('stage-component');
@@ -207,7 +207,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			document.body.appendChild(teamStage);
 		}
 
-		addStageComponents(team);
+		renderStageComponents(team);
 	};
 
 	var defaultTypes = function defaultTypes() {
@@ -294,7 +294,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		return '<option value="' + type + '">' + type + '</option>';
 	}) + '\n\t\t\t</select>\n\t\t\t<select name="genfilter">\n\t\t\t\t<option selected>Filter by Gen...</option>\n\t\t\t\t' + Array(7).fill().map(function (_, i) {
 		return '<option value="' + (i + 1) + '">Gen ' + (i + 1) + '</option>';
-	}) + '\n\t\t\t</select>\n\t\t\t<div class="suggestions">\n\t\t\t<p>fetching list...</p>\n\t\t\t</div>';
+	}) + '\n\t\t\t</select>\n\t\t\t<div class="suggestions">\n\t\t\t\t<p>fetching list...</p>\n\t\t\t</div>';
 
 	pokemonListNode.innerHTML = pokemonListInput;
 
@@ -302,7 +302,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 	//event listeners
 	var searchInput = document.querySelector('.search-pokemon');
-	searchInput.addEventListener('keyup', displayPokemonMatches);
+	searchInput.addEventListener('keyup', renderPokemonMatches);
 	pokemonModalCloseBtn.addEventListener('click', closeModal);
 	startOverButton.addEventListener('click', startOver);
 
