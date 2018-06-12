@@ -309,6 +309,14 @@
 
 	const pokemonListInput =
 		`<input type="search" placeholder="Filter by name..." class="search-pokemon" >
+			<select name="typefilter">
+				<option selected>Filter by Type...</option>
+				${defaultTypes().sort().map(type => `<option value="${type}">${type}</option>`)}
+			</select>
+			<select name="genfilter">
+				<option selected>Filter by Gen...</option>
+				${Array(7).fill().map((_, i) => `<option value="${i+1}">Gen ${i+1}</option>`)}
+			</select>
 			<div class="suggestions">
 			<p>fetching list...</p>
 			</div>`;
