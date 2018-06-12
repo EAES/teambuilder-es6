@@ -28,7 +28,7 @@
 			.then(data => buildPokemonList(data));
 	}
 
-	function renderQuickview(pokemon){
+	function renderQuickview(pokemon){		
 		const html = `
 			<h1>${pokemon.name}</h1>
 			<div id="pokemonInfo">
@@ -111,8 +111,8 @@
 			
 			tableRows.forEach(function(row){
 				function prepareQuickView(){
-				const name = this.querySelector("td:nth-child(3)");
-				updateQuickview(apiUrl+'pokemon/'+name.innerText.toLowerCase()+'/');
+				const id = this.querySelector("td:nth-child(1)");
+				updateQuickview(apiUrl+'pokemon/'+parseInt(id.innerText)+'/');
 				}
 				row.addEventListener('click', prepareQuickView);
 			})

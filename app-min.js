@@ -67,8 +67,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 			tableRows.forEach(function (row) {
 				function prepareQuickView() {
-					var name = this.querySelector("td:nth-child(3)");
-					updateQuickview(apiUrl + 'pokemon/' + name.innerText.toLowerCase() + '/');
+					var id = this.querySelector("td:nth-child(1)");
+					updateQuickview(apiUrl + 'pokemon/' + parseInt(id.innerText) + '/');
 				}
 				row.addEventListener('click', prepareQuickView);
 			});
