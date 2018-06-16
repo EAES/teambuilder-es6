@@ -441,6 +441,10 @@ header {
 		background: url(../images/arrow-down.png) 96% 50% no-repeat;
 		background-size: 18px;
 		text-transform: capitalize;
+
+		option {
+			text-transform: capitalize;
+		}
 	}
 	
 	select[name='typefilter'] {

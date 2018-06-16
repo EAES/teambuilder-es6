@@ -336,7 +336,7 @@
 		`<input type="search" placeholder="Filter by name..." class="search-pokemon" >
 			<select name="typefilter">
 				<option selected>Or filter by type...</option>
-				${defaultTypes().sort().map(type => `<option value="${type}">${type}</option>`)}
+				${defaultTypes().sort().map(type => `<option value="${type}">${type[0].toUpperCase() + type.substring(1)}</option>`)}
 			</select>
 			<select name="genfilter">
 				<option selected>Or filter by Gen...</option>

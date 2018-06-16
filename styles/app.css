@@ -344,6 +344,8 @@ header {
     background: url(../images/arrow-down.png) 96% 50% no-repeat;
     background-size: 18px;
     text-transform: capitalize; }
+    #pokemon-list select option {
+      text-transform: capitalize; }
   #pokemon-list select[name='typefilter'] {
     margin-left: 1em;
     float: left; }
