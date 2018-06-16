@@ -228,7 +228,9 @@ header {
 
   img{
     width: 100%;
-    max-width: 90px;
+		max-width: 90px;
+		height: 90px;
+		object-fit: contain;
     animation: .5s ease-in-out 0s fadeIn;
     margin: 0px auto 5px auto;
     display: block;
