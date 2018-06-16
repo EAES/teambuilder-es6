@@ -54,11 +54,27 @@
 		renderPokemonStats(pokemon);
 	}
 
-	function matchPokemon(matchWord, pokemon){
-		return pokemon.filter(mon=>{
-			const regex = new RegExp(matchWord, 'gi');
-			return mon.name.match(regex);
-		});
+	function matchPokemon(matchWord, pokemon, trigger){
+		console.log(pokemon);
+
+		if (trigger === 'gen') {
+			return pokemon.filter(mon => {
+				const regex = new RegExp(matchWord, 'gi');
+				return mon.name.match(regex);
+			});
+
+		} else if (trigger === 'type') {
+			return pokemon.filter(mon => {
+				const regex = new RegExp(matchWord, 'gi');
+				return mon.type_i.match(regex) || mon.type_ii.match(regex);
+			});
+			
+		} else {
+			return pokemon.filter(mon => {
+				const regex = new RegExp(matchWord, 'gi');
+				return mon.name.match(regex);
+			});
+		}
 	}
 
 	function renderPokemonTable(pokemon){
@@ -122,9 +138,9 @@
 		}
 	}
 
-	function renderPokemonMatches(){
-		const matchArray = matchPokemon(this.value, pokemon);
-		renderPokemonTable(matchArray);
+	function filterPokemon(event, trigger){
+		const value = event.target.value;
+		renderPokemonTable(matchPokemon(value, pokemon, trigger))
 	}
 
 	function preparePokemonList(data){
@@ -327,9 +343,13 @@
 
 	//event listeners
 	const searchInput = document.querySelector('.search-pokemon');
-	searchInput.addEventListener('keyup', renderPokemonMatches);
+				searchInput.addEventListener('keyup', event => filterPokemon(event));
 	pokemonModalCloseBtn.addEventListener('click', closeModal);
 	startOverButton.addEventListener('click', startOver);
+	const typefilter = document.querySelector('select[name="typefilter"]');
+				typefilter.addEventListener('change', (event)=>{
+					filterPokemon(event, 'type');
+				});
 
 	//go
 	getPokemonList('pokedex.json');

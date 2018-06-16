@@ -45,11 +45,25 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		renderPokemonStats(pokemon);
 	};
 
-	var matchPokemon = function matchPokemon(matchWord, pokemon) {
-		return pokemon.filter(function (mon) {
-			var regex = new RegExp(matchWord, 'gi');
-			return mon.name.match(regex);
-		});
+	var matchPokemon = function matchPokemon(matchWord, pokemon, trigger) {
+		console.log(pokemon);
+
+		if (trigger === 'gen') {
+			return pokemon.filter(function (mon) {
+				var regex = new RegExp(matchWord, 'gi');
+				return mon.name.match(regex);
+			});
+		} else if (trigger === 'type') {
+			return pokemon.filter(function (mon) {
+				var regex = new RegExp(matchWord, 'gi');
+				return mon.type_i.match(regex) || mon.type_ii.match(regex);
+			});
+		} else {
+			return pokemon.filter(function (mon) {
+				var regex = new RegExp(matchWord, 'gi');
+				return mon.name.match(regex);
+			});
+		}
 	};
 
 	var renderPokemonTable = function renderPokemonTable(pokemon) {
@@ -77,9 +91,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		}
 	};
 
-	var renderPokemonMatches = function renderPokemonMatches() {
-		var matchArray = matchPokemon(this.value, pokemon);
-		renderPokemonTable(matchArray);
+	var filterPokemon = function filterPokemon(event, trigger) {
+		var value = event.target.value;
+		renderPokemonTable(matchPokemon(value, pokemon, trigger));
 	};
 
 	var preparePokemonList = function preparePokemonList(data) {
@@ -302,9 +316,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 	//event listeners
 	var searchInput = document.querySelector('.search-pokemon');
-	searchInput.addEventListener('keyup', renderPokemonMatches);
+	searchInput.addEventListener('keyup', function (event) {
+		return filterPokemon(event);
+	});
 	pokemonModalCloseBtn.addEventListener('click', closeModal);
 	startOverButton.addEventListener('click', startOver);
+	var typefilter = document.querySelector('select[name="typefilter"]');
+	typefilter.addEventListener('change', function (event) {
+		filterPokemon(event, 'type');
+	});
 
 	//go
 	getPokemonList('pokedex.json');
