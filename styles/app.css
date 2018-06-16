@@ -323,13 +323,38 @@ header {
   #pokemon-list input {
     display: block;
     width: 93%;
-    margin: 1em auto;
+    margin: 1em auto 5px auto;
     border: 1px solid #CCCCCC;
     box-shadow: inset 0 1px 0 0 #ECECEC;
     border-radius: 3px;
     font-size: 13px;
     color: #898989;
     padding: 10px; }
+  #pokemon-list select {
+    margin-bottom: 0px;
+    color: #898989;
+    padding: 6px;
+    box-sizing: border-box;
+    width: 45%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 13px;
+    background: url(../images/arrow-down.png) 96% 50% no-repeat;
+    background-size: 18px;
+    text-transform: capitalize; }
+  #pokemon-list select[name='typefilter'] {
+    margin-left: 1em;
+    float: left; }
+  #pokemon-list select[name='genfilter'] {
+    margin-right: 1em;
+    float: right; }
+  #pokemon-list .suggestions {
+    display: inline-block;
+    width: 100%; }
+    #pokemon-list .suggestions p {
+      margin: 1em 0; }
   #pokemon-list p {
     padding-bottom: 10px; }
   #pokemon-list table {

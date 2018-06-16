@@ -315,9 +315,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	pokemonAddModal.insertBefore(pokemonQuickView, pokemonListNode);
 	pokemonAddModal.insertBefore(pokemonModalCloseBtn, pokemonQuickView);
 
-	var pokemonListInput = '<input type="search" placeholder="Filter by name..." class="search-pokemon" >\n\t\t\t<select name="typefilter">\n\t\t\t\t<option selected>Filter by Type...</option>\n\t\t\t\t' + defaultTypes().sort().map(function (type) {
+	var pokemonListInput = '<input type="search" placeholder="Filter by name..." class="search-pokemon" >\n\t\t\t<select name="typefilter">\n\t\t\t\t<option selected>Or filter by type...</option>\n\t\t\t\t' + defaultTypes().sort().map(function (type) {
 		return '<option value="' + type + '">' + type + '</option>';
-	}) + '\n\t\t\t</select>\n\t\t\t<select name="genfilter">\n\t\t\t\t<option selected>Filter by Gen...</option>\n\t\t\t\t' + Array(7).fill().map(function (_, i) {
+	}) + '\n\t\t\t</select>\n\t\t\t<select name="genfilter">\n\t\t\t\t<option selected>Or filter by Gen...</option>\n\t\t\t\t' + Array(7).fill().map(function (_, i) {
 		return '<option value="' + (i + 1) + '">Gen ' + (i + 1) + '</option>';
 	}) + '\n\t\t\t</select>\n\t\t\t<div class="suggestions">\n\t\t\t\t<p>fetching list...</p>\n\t\t\t</div>';
 
