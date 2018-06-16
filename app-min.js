@@ -45,22 +45,33 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		renderPokemonStats(pokemon);
 	};
 
-	var matchPokemon = function matchPokemon(matchWord, pokemon, trigger) {
-		console.log(pokemon);
+	var matchPokemon = function matchPokemon(match, pokemon, trigger) {
+		var regex = new RegExp(match, 'gi');
 
 		if (trigger === 'gen') {
 			return pokemon.filter(function (mon) {
-				var regex = new RegExp(matchWord, 'gi');
-				return mon.name.match(regex);
+				if (match === '1') {
+					return mon.id >= 0 && mon.id <= 151;
+				} else if (match === '2') {
+					return mon.id >= 152 && mon.id <= 251;
+				} else if (match === '3') {
+					return mon.id >= 252 && mon.id <= 386;
+				} else if (match === '4') {
+					return mon.id >= 387 && mon.id <= 493;
+				} else if (match === '5') {
+					return mon.id >= 494 && mon.id <= 649;
+				} else if (match === '6') {
+					return mon.id >= 650 && mon.id <= 721;
+				} else if (match === '7') {
+					return mon.id >= 722 && mon.id <= 807;
+				}
 			});
 		} else if (trigger === 'type') {
 			return pokemon.filter(function (mon) {
-				var regex = new RegExp(matchWord, 'gi');
 				return mon.type_i.match(regex) || mon.type_ii.match(regex);
 			});
 		} else {
 			return pokemon.filter(function (mon) {
-				var regex = new RegExp(matchWord, 'gi');
 				return mon.name.match(regex);
 			});
 		}
@@ -323,7 +334,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	startOverButton.addEventListener('click', startOver);
 	var typefilter = document.querySelector('select[name="typefilter"]');
 	typefilter.addEventListener('change', function (event) {
-		filterPokemon(event, 'type');
+		return filterPokemon(event, 'type');
+	});
+	var genfilter = document.querySelector('select[name="genfilter"]');
+	genfilter.addEventListener('change', function (event) {
+		return filterPokemon(event, 'gen');
 	});
 
 	//go
