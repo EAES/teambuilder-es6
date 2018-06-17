@@ -167,6 +167,7 @@
 		let componentToUpdate = document.querySelector('.stage-component:nth-child('+(Number(teamPosition) + 1)+')');
 				componentToUpdate.innerHTML = `
 					<img src="images/pokemon/sprites/pokemon/${currPokemon.id+'.png'}" />
+					<h5 class="pokemon-name">${currPokemon.name}</h5>
 					<div class="type-badges">${currTypes.map(type=>'<span class="badge '+type+'"></span>').join('')}</div>
 				`;
 

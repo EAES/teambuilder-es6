@@ -1,5 +1,5 @@
 @font-face {
-  font-family:"Pokemon Pixel Font Regular";
+  font-family:"Pokemon";
   src:url("../fonts/pokemon_pixel_font.eot?") format("eot"),
     url("../fonts/pokemon_pixel_font.woff") format("woff"),
     url("../fonts/pokemon_pixel_font.ttf") format("truetype"),
@@ -115,19 +115,35 @@ header {
     img{
       width: 90%;
       position: absolute;
-      bottom: 0%;
+      bottom: 3%;
       left: 0;
       right: 0;
       margin: 0 auto;
       filter: drop-shadow(1px 2px 0px #F9F9F9);
 		}
+
+		.pokemon-name {
+			margin: 0;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			text-transform: uppercase;
+			font-family: 'Pokemon';
+			font-size: 21px;
+			color: #898989;
+			text-shadow: 1px 1px 1px white;
+			padding: 3px;
+			line-height: .7;
+			background: rgba(255,255,255,.9);
+			width: 100%;
+		}
 		
 		.type-badges {
 			position: absolute;
-			bottom: 1px;
+			top: 3px;
+			left: 3px;
 			margin: 0 auto;
 			display: inline-block;
-			right: 0;
 			margin-right: 4px;
 			
 			.badge {
@@ -191,7 +207,7 @@ header {
       font-size: 18px;
       line-height: 22px;
       border: 2px solid white;
-      font-family: "Pokemon Pixel Font Regular";
+      font-family: "Pokemon";
     }
   }
 }
@@ -249,7 +265,7 @@ header {
     font-size: 38px;
     font-weight: normal;
     letter-spacing: 2px;
-    font-family: "Pokemon Pixel Font Regular";
+    font-family: "Pokemon";
   }
 }
 

@@ -122,7 +122,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		team.splice(teamPosition, 1, currPokemon);
 		var componentToUpdate = document.querySelector('.stage-component:nth-child(' + (Number(teamPosition) + 1) + ')');
-		componentToUpdate.innerHTML = '\n\t\t\t\t\t<img src="images/pokemon/sprites/pokemon/' + (currPokemon.id + '.png') + '" />\n\t\t\t\t\t<div class="type-badges">' + currTypes.map(function (type) {
+		componentToUpdate.innerHTML = '\n\t\t\t\t\t<img src="images/pokemon/sprites/pokemon/' + (currPokemon.id + '.png') + '" />\n\t\t\t\t\t<h5 class="pokemon-name">' + currPokemon.name + '</h5>\n\t\t\t\t\t<div class="type-badges">' + currTypes.map(function (type) {
 			return '<span class="badge ' + type + '"></span>';
 		}).join('') + '</div>\n\t\t\t\t';
 
