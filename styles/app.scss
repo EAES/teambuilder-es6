@@ -120,7 +120,45 @@ header {
       right: 0;
       margin: 0 auto;
       filter: drop-shadow(1px 2px 0px #F9F9F9);
-    }
+		}
+		
+		.type-badges {
+			position: absolute;
+			bottom: 1px;
+			margin: 0 auto;
+			display: inline-block;
+			right: 0;
+			margin-right: 4px;
+			
+			.badge {
+				background-image: url(../images/type-circles.png);
+				background-size: 600%;
+				width: 30px;
+				height: 30px;
+				display: inline-block;
+				margin-right: 1px;
+				
+				&.grass { background-position: -90px 0px }
+				&.poison { background-position: -30px -30px }
+				&.normal {}
+				&.ground { background-position: -60px -30px  }
+				&.rock { background-position: 0px 30px  }
+				&.steel { background-position: 60px 30px }
+				&.ice { background-position: -150px 0px }
+				&.flying { background-position: -90px -30px }
+				&.ghost { background-position: -30px 30px }
+				&.psychic {background-position: 60px 60px }
+				&.fairy { background-position: 30px 30px }
+				&.electric { background-position: -120px 0px }
+				&.bug {background-position: 30px 60px }
+				&.water { background-position: -60px 0px  }
+				&.dark { background-position: 90px 30px }
+				&.fire { background-position: -30px 0px }
+				&.fighting { background-position: 0px -30px }
+				&.dragon { background-position: 120px 30px }
+			}
+
+		}
 
     &:hover{
       cursor: pointer;

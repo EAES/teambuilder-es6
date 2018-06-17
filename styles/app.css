@@ -98,6 +98,54 @@ header {
       right: 0;
       margin: 0 auto;
       filter: drop-shadow(1px 2px 0px #F9F9F9); }
+    #teamStage .stage-component .type-badges {
+      position: absolute;
+      bottom: 1px;
+      margin: 0 auto;
+      display: inline-block;
+      right: 0;
+      margin-right: 4px; }
+      #teamStage .stage-component .type-badges .badge {
+        background-image: url(../images/type-circles.png);
+        background-size: 600%;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        margin-right: 1px; }
+        #teamStage .stage-component .type-badges .badge.grass {
+          background-position: -90px 0px; }
+        #teamStage .stage-component .type-badges .badge.poison {
+          background-position: -30px -30px; }
+        #teamStage .stage-component .type-badges .badge.ground {
+          background-position: -60px -30px; }
+        #teamStage .stage-component .type-badges .badge.rock {
+          background-position: 0px 30px; }
+        #teamStage .stage-component .type-badges .badge.steel {
+          background-position: 60px 30px; }
+        #teamStage .stage-component .type-badges .badge.ice {
+          background-position: -150px 0px; }
+        #teamStage .stage-component .type-badges .badge.flying {
+          background-position: -90px -30px; }
+        #teamStage .stage-component .type-badges .badge.ghost {
+          background-position: -30px 30px; }
+        #teamStage .stage-component .type-badges .badge.psychic {
+          background-position: 60px 60px; }
+        #teamStage .stage-component .type-badges .badge.fairy {
+          background-position: 30px 30px; }
+        #teamStage .stage-component .type-badges .badge.electric {
+          background-position: -120px 0px; }
+        #teamStage .stage-component .type-badges .badge.bug {
+          background-position: 30px 60px; }
+        #teamStage .stage-component .type-badges .badge.water {
+          background-position: -60px 0px; }
+        #teamStage .stage-component .type-badges .badge.dark {
+          background-position: 90px 30px; }
+        #teamStage .stage-component .type-badges .badge.fire {
+          background-position: -30px 0px; }
+        #teamStage .stage-component .type-badges .badge.fighting {
+          background-position: 0px -30px; }
+        #teamStage .stage-component .type-badges .badge.dragon {
+          background-position: 120px 30px; }
     #teamStage .stage-component:hover {
       cursor: pointer;
       background-color: #fff;

@@ -161,13 +161,17 @@
 	}
 
 	function addToTeam(){
+		const currTypes = currPokemon.types.map(type => type.type.name);
+
 		team.splice(teamPosition, 1, currPokemon);
 		let componentToUpdate = document.querySelector('.stage-component:nth-child('+(Number(teamPosition) + 1)+')');
-		componentToUpdate.innerHTML = `<img src="images/pokemon/sprites/pokemon/${currPokemon.id+'.png'}" />`;
+				componentToUpdate.innerHTML = `
+					<img src="images/pokemon/sprites/pokemon/${currPokemon.id+'.png'}" />
+					<div class="type-badges">${currTypes.map(type=>'<span class="badge '+type+'"></span>').join('')}</div>
+				`;
 
 		renderTeamStage(team);
 		closeModal();
-		const currTypes = currPokemon.types.map(type => type.type.name);
 		calcWeaknesses(currTypes);
 	}
 
@@ -242,10 +246,10 @@
 		//build DOM -> team stage
 		function renderStageComponents(){
 			for (var i = 0; i < 6; i++) {
-			const teamStageComponent = document.createElement('div');
-					teamStageComponent.classList.add('stage-component');
-					teamStageComponent.setAttribute('data-position', i)
-					teamStage.appendChild(teamStageComponent);
+				const teamStageComponent = document.createElement('div');
+							teamStageComponent.classList.add('stage-component');
+							teamStageComponent.setAttribute('data-position', i)
+				teamStage.appendChild(teamStageComponent);
 			}
 
 			const teamAddBtn = document.querySelector('#teamStage').querySelectorAll('.stage-component');

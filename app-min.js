@@ -116,15 +116,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	};
 
 	var addToTeam = function addToTeam() {
-		team.splice(teamPosition, 1, currPokemon);
-		var componentToUpdate = document.querySelector('.stage-component:nth-child(' + (Number(teamPosition) + 1) + ')');
-		componentToUpdate.innerHTML = '<img src="images/pokemon/sprites/pokemon/' + (currPokemon.id + '.png') + '" />';
-
-		renderTeamStage(team);
-		closeModal();
 		var currTypes = currPokemon.types.map(function (type) {
 			return type.type.name;
 		});
+
+		team.splice(teamPosition, 1, currPokemon);
+		var componentToUpdate = document.querySelector('.stage-component:nth-child(' + (Number(teamPosition) + 1) + ')');
+		componentToUpdate.innerHTML = '\n\t\t\t\t\t<img src="images/pokemon/sprites/pokemon/' + (currPokemon.id + '.png') + '" />\n\t\t\t\t\t<div class="type-badges">' + currTypes.map(function (type) {
+			return '<span class="badge ' + type + '"></span>';
+		}).join('') + '</div>\n\t\t\t\t';
+
+		renderTeamStage(team);
+		closeModal();
 		calcWeaknesses(currTypes);
 	};
 
