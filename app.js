@@ -303,7 +303,8 @@
 			if (confirm('This will clear your stage of all pokémon. Are you sure?')) {
 				weakArray.map(x=>x.length=0);
 				strongArray.map(x => x.length = 0);
-				renderTypeWeaknesses();
+				weaknessStageEl.innerHTML = `<img class="start-image" src="images/start.png">`;
+				document.body.appendChild(weaknessStageEl);
 				team.fill(null);
 				Array.from(document.body.querySelectorAll('.stage-component')).map(x => x.innerHTML = '');
 			}
@@ -312,7 +313,7 @@
 
 	const header = document.createElement('header');
 				document.body.appendChild(header);
-				header.innerHTML = '<img src="images/mainlogo.png">'
+				header.innerHTML = '<img class="main-logo" src="images/mainlogo.png">'
 	const startOverButton = document.createElement('button');
 				startOverButton.setAttribute('class', 'clear-stage');
 				startOverButton.innerText = 'start over';
@@ -369,5 +370,6 @@
 	getPokemonList('pokedex.json');
 	updateQuickview(apiUrl+'pokemon/1/');
 	renderTeamStage(team);
-	renderTypeWeaknesses();
+	weaknessStageEl.innerHTML = `<img class="start-image" src="images/start.png">`;
+	document.body.appendChild(weaknessStageEl);
 }

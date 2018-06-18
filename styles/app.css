@@ -63,8 +63,8 @@ header {
       font-family: 'FontAwesome'; }
     header .clear-stage:active {
       padding: 3px 8px; }
-  header img {
-    width: 50%;
+  header .main-logo {
+    width: 70%;
     margin: 0 auto;
     display: block;
     position: relative;
@@ -169,6 +169,8 @@ header {
   color: white;
   padding: 10px 25px;
   text-align: center; }
+  #teamWeaknesses .start-image {
+    margin-top: 1em; }
   #teamWeaknesses ul {
     margin: 0;
     padding: 0;

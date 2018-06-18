@@ -79,8 +79,8 @@ header {
 		}
 	}
 
-  img{
-    width: 50%;
+  .main-logo{
+    width: 70%;
     margin: 0 auto;
     display: block;
     position: relative;
@@ -187,7 +187,11 @@ header {
 #teamWeaknesses {
   color: white;
   padding: 10px 25px;
-  text-align: center;
+	text-align: center;
+	
+	.start-image {
+		margin-top: 1em;
+	}
 
   ul{
     margin: 0;

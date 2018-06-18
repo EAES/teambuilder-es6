@@ -274,7 +274,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				strongArray.map(function (x) {
 					return x.length = 0;
 				});
-				renderTypeWeaknesses();
+				weaknessStageEl.innerHTML = '<img class="start-image" src="images/start.png">';
+				document.body.appendChild(weaknessStageEl);
 				team.fill(null);
 				Array.from(document.body.querySelectorAll('.stage-component')).map(function (x) {
 					return x.innerHTML = '';
@@ -293,7 +294,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 	var header = document.createElement('header');
 	document.body.appendChild(header);
-	header.innerHTML = '<img src="images/mainlogo.png">';
+	header.innerHTML = '<img class="main-logo" src="images/mainlogo.png">';
 	var startOverButton = document.createElement('button');
 	startOverButton.setAttribute('class', 'clear-stage');
 	startOverButton.innerText = 'start over';
@@ -348,5 +349,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	getPokemonList('pokedex.json');
 	updateQuickview(apiUrl + 'pokemon/1/');
 	renderTeamStage(team);
-	renderTypeWeaknesses();
+	weaknessStageEl.innerHTML = '<img class="start-image" src="images/start.png">';
+	document.body.appendChild(weaknessStageEl);
 }
